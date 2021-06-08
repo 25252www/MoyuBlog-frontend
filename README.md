@@ -1,24 +1,20 @@
 # frontend
 
-## Project setup
-```
-npm install
-```
+##前端技术栈
+- Vue
+- Vue-router
+- Element-plus
+- Vue-axios
+- 以后也许还有
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 待实现的功能
+-[ ] 回到首页
+-[ ] 文章页侧边栏显示
+-[ ] about me界面
+-[ ] 文章分类标签
+-[ ] 评论与回复
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Version 1
+这仅仅是一个能部署上去的版本
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
