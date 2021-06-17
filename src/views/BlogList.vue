@@ -73,7 +73,7 @@ export default {
   color: #0078E7;
   text-decoration: none;
   transition: color .1s;
-  cursor: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/link.cur),pointer;
+  /*cursor: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/link.cur),pointer;*/
 }
 
 .blog-title-link:hover {

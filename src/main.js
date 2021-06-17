@@ -8,7 +8,6 @@ import VueAxios from 'vue-axios'
 
 axios.defaults.timeout = 5000 // 请求超时
 axios.defaults.baseURL = '/api/'
-
 const app = createApp(App)
 
 app.use(router)

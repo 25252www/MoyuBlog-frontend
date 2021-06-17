@@ -26,7 +26,7 @@ export default {
 <style scoped>
 .home{
   max-height:100vh;
-  cursor: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/pointer.cur),auto;
+  /*cursor: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/pointer.cur),auto;*/
 }
 .container{
   max-height: 100%;
