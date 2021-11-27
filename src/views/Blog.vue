@@ -2,12 +2,15 @@
   <div class="blog">
     <p class="blog-title">{{ blog.title }}</p>
     <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date.substr(0, 10) }} 🔍{{ blog.hits }}</p>
-    <div class="markdown-body" v-html="blog.content"/>
+    <!--    <div class="markdown-body" v-html="blog.content"/>-->
+    <div class="markdown-body">
+      <v-md-editor class="markdown-body" v-model="blog.content" mode="preview"></v-md-editor>
+    </div>
   </div>
 </template>
 
 <script>
-import 'star-markdown-css'
+// import 'star-markdown-css'
 
 export default {
   name: "Blog",
@@ -18,14 +21,12 @@ export default {
   },
   created() {
     const blogId = this.$route.params.id;
-    console.log(blogId);
     this.axios.get('/blogs/' + blogId).then(res => {
-      //阅读量增加
-      this.blog = res.data;
-      const MarkdownIt = require("markdown-it");
-      const md = new MarkdownIt();
-      const result = md.render(this.blog.content);
-      this.blog.content = result;
+      this.blog = res.data.data;
+      // const MarkdownIt = require("markdown-it");
+      // const md = new MarkdownIt();
+      // const result = md.render(this.blog.content);
+      // this.blog.content = result;
     })
   }
 }

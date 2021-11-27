@@ -12,8 +12,24 @@ const routes = [
     component:() => import('../views/Login')
   },
   {
+    path: '/blogs/add',
+    name: 'BlogAdd',
+    component: () => import('../views/BlogEdit'),
+    meta: {
+      requireAuth: true
+    }
+  },
+  {
     path: '/blogs/:id',
     component:() => import('../views/Blog')
+  },
+  {
+    path: '/blogs/:blogId/edit',
+    name: 'BlogEdit',
+    component: () => import('../views/BlogEdit'),
+    meta: {
+      requireAuth: true
+    }
   }
 ]
 

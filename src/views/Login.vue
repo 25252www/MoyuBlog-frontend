@@ -21,10 +21,10 @@
 
           <el-form-item>
             <el-button type="primary" @click="submitForm('ruleForm')"
-            >Create
+            >登录
             </el-button
             >
-            <el-button @click="resetForm('ruleForm')">Reset</el-button>
+            <el-button @click="resetForm('ruleForm')">取消</el-button>
           </el-form-item>
         </el-form>
       </el-main>
@@ -39,20 +39,14 @@ export default {
   data() {
     return {
       ruleForm: {
-        username: '',
-        password:''
+        username: 'moyu',
+        password:'lxy200131'
       },
       rules: {
         username: [
           {
             required: true,
             message: '请输入用户名',
-            trigger: 'blur',
-          },
-          {
-            min: 3,
-            max: 15,
-            message: '长度在3到15个字符',
             trigger: 'blur',
           },
         ],
@@ -70,7 +64,16 @@ export default {
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          alert('submit!')
+          const _this=this
+          this.axios.post('/login',this.ruleForm).then(res=>{
+            const jwt = res.headers['authorization']
+            const userInfo = res.data.data
+            // 把数据共享出去
+            _this.$store.commit("SET_TOKEN", jwt)
+            _this.$store.commit("SET_USERINFO", userInfo)
+            //如果成功则跳转
+            _this.$router.push("/")
+          })
         } else {
           console.log('error submit!!')
           return false
@@ -88,21 +91,21 @@ export default {
 .el-header,
 .el-footer {
   background-color: #b3c0d1;
-  color: var(--el-text-color-primary);
+  color: #0078E7;
   text-align: center;
   line-height: 60px;
 }
 
 .el-aside {
   background-color: #d3dce6;
-  color: var(--el-text-color-primary);
+  color: #0078E7;
   text-align: center;
   line-height: 200px;
 }
 
 .el-main {
   /*background-color: #e9eef3;*/
-  color: var(--el-text-color-primary);
+  color: #0078E7;
   text-align: center;
   line-height: 160px;
 }
