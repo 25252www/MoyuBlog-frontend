@@ -40,7 +40,7 @@ export default {
     return {
       ruleForm: {
         username: 'moyu',
-        password:'lxy200131'
+        password:''
       },
       rules: {
         username: [
@@ -72,7 +72,7 @@ export default {
             _this.$store.commit("SET_TOKEN", jwt)
             _this.$store.commit("SET_USERINFO", userInfo)
             //如果成功则跳转
-            _this.$router.push("/")
+            _this.$router.push("/form")
           })
         } else {
           console.log('error submit!!')

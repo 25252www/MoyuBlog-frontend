@@ -7,6 +7,8 @@ import { store } from './store'
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
 import './axios'
+import "./permission"
+import moment from 'moment'
 
 import VMdEditor from '@kangc/v-md-editor/lib/codemirror-editor';
 import '@kangc/v-md-editor/lib/style/codemirror-editor.css';
@@ -51,5 +53,5 @@ app.use(ElementPlus)
 app.use(VueAxios, axios)
 app.use(store)
 app.use(VMdEditor);
-
+app.use(moment);
 app.mount('#app')

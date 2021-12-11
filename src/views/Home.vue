@@ -1,11 +1,11 @@
 <template>
   <div class="home">
     <el-container class="container">
-      <el-aside width="16vw">
+      <el-aside width="20%">
         <Sidebar></Sidebar>
       </el-aside>
       <el-main>
-        <AppMain class = "container"></AppMain>
+        <AppMain class="container"></AppMain>
       </el-main>
     </el-container>
   </div>
@@ -24,11 +24,11 @@ export default {
 </script>
 
 <style scoped>
-.home{
-  max-height:100vh;
-  /*cursor: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/pointer.cur),auto;*/
+.home {
+  max-height: 100vh;
 }
-.container{
+
+.container {
   max-height: 100%;
 }
 

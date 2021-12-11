@@ -1,20 +1,24 @@
-# frontend
+# MoyuBlog -FrontEnd
+[摸鱼战士的小站](http://moyusoldier.cloud)-前端
 
-## 前端技术栈
-- Vue
+
+## 技术栈
+- Vue3
 - Vue-router
-- Element-plus
 - Vue-axios
-- 以后也许还有
+- Vuex
+- Element-plus
+- v-md-editor
 
-## 待实现的功能
-- [ ] 回到首页
-- [ ] 文章页侧边栏显示
-- [ ] about me界面
-- [ ] 文章分类标签
-- [ ] 评论与回复
+## 功能
+- [x] 首页
+- [x] 登录页及后台
+- [x] goHome
+- [ ] https
+- [ ] 页面布局优化，自适应缩放
 
-## Version 1
-这仅仅是一个能部署上去的版本
+
+
+
 
 

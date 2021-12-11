@@ -13,16 +13,18 @@
         </el-form-item>
 
         <el-form-item label="摘要" prop="description">
-          <el-input type="textarea" v-model="ruleForm.description"></el-input>
+          <!--          <el-input type="textarea" v-model="ruleForm.description"></el-input>-->
+          <v-md-editor v-model="ruleForm.description" height="200px"></v-md-editor>
         </el-form-item>
 
         <el-form-item label="内容" prop="content">
-          <v-md-editor v-model="ruleForm.content" height="400px"></v-md-editor>
+          <v-md-editor v-model="ruleForm.content" height="800px"></v-md-editor>
         </el-form-item>
 
         <el-form-item>
           <el-button type="primary" @click="submitForm('ruleForm')">立即创建</el-button>
-          <el-button @click="resetForm('ruleForm')">重置</el-button>
+          <el-button @click="resetForm">重置</el-button>
+          <el-button @click="cancel">取消</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -56,6 +58,20 @@ export default {
     }
   },
   methods: {
+    fetchData() {
+      const blogId = this.$route.params.blogId
+      console.log(blogId)
+      const _this = this
+      if (blogId) {
+        this.axios.get('/blogs/' + blogId).then(res => {
+          const blog = res.data.data
+          _this.ruleForm.id = blog.id
+          _this.ruleForm.title = blog.title
+          _this.ruleForm.description = blog.description
+          _this.ruleForm.content = blog.content
+        })
+      }
+    },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
@@ -69,7 +85,7 @@ export default {
             ElMessageBox.alert('操作成功', '提示', {
               confirmButtonText: '确定',
               callback: () => {
-                _this.$router.push("/")
+                _this.$router.push("/form")
               },
             })
           });
@@ -79,23 +95,15 @@ export default {
         }
       })
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
+    resetForm() {
+      this.fetchData()
     },
+    cancel() {
+      this.$router.push('/form')
+    }
   },
   created() {
-    const blogId = this.$route.params.blogId
-    console.log(blogId)
-    const _this = this
-    if (blogId) {
-      this.axios.get('/blogs/' + blogId).then(res => {
-        const blog = res.data.data
-        _this.ruleForm.id = blog.id
-        _this.ruleForm.title = blog.title
-        _this.ruleForm.description = blog.description
-        _this.ruleForm.content = blog.content
-      })
-    }
+    this.fetchData()
   }
 }
 </script>

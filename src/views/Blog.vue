@@ -1,5 +1,6 @@
 <template>
   <div class="blog">
+    <span class="go-home" title="回到首页"><el-link :underline=false :href="'/'">🏠</el-link></span>
     <p class="blog-title">{{ blog.title }}</p>
     <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date.substr(0, 10) }} 🔍{{ blog.hits }}</p>
     <!--    <div class="markdown-body" v-html="blog.content"/>-->
@@ -65,5 +66,9 @@ export default {
   text-align: center;
   font-size: 14px;
   color: #555555;
+}
+
+.go-home {
+  position: fixed;
 }
 </style>

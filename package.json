@@ -13,12 +13,14 @@
     "element-plus": "^1.0.2-beta.44",
     "github-markdown-css": "^4.0.0",
     "markdown-it": "^12.0.6",
+    "moment": "^2.29.1",
     "star-markdown-css": "^0.1.25",
     "vue": "^3.0.0",
     "vue-axios": "^3.2.4",
     "vue-router": "^4.0.0-0"
   },
   "devDependencies": {
+    "@element-plus/icons-vue": "^0.2.4",
     "@kangc/v-md-editor": "^2.3.12",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",

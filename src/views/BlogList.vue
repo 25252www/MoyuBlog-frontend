@@ -23,6 +23,7 @@
 
 <script>
 import "star-markdown-css";
+
 export default {
   name: "BlogList",
   data() {
@@ -104,5 +105,10 @@ export default {
 
 .mpage {
   text-align: center;
+}
+
+.el-pagination.is-background .el-pager li:not(.disabled).active {
+  background-color: #0078E7;
+  color: #FFF;
 }
 </style>
