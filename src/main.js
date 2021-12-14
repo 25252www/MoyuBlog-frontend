@@ -40,7 +40,6 @@ import 'codemirror/addon/scroll/simplescrollbars.css';
 // style
 import 'codemirror/lib/codemirror.css';
 
-
 VMdEditor.Codemirror = Codemirror;
 VMdEditor.use(githubTheme, {
     Hljs: hljs,

@@ -4,7 +4,10 @@ const routes = [
     {
         path: '/',
         name: 'Home',
-        component: () => import('../views/Home')
+        component: () => import('../views/Home'),
+        meta: {
+            description:"这里是摸鱼战士的小站🚀，记录技术，分享生活🌟，欢迎来玩！"
+        }
     },
     {
         path: '/home',
