@@ -12,11 +12,11 @@
       </p>
     </div>
     <div class="divider">
-      <span title="登录"><el-link :underline=false :href="'/login'">🎄</el-link></span>
+      <span title="首页"><el-link :underline=false :href="'/home'">🏠首页</el-link></span>
       <el-divider direction="vertical"></el-divider>
-      <span class="category" title="分类"><el-link :underline=false>🏷️</el-link></span>
+      <span title="分类"><el-link :underline=false>🏷️分类</el-link></span>
       <el-divider direction="vertical"></el-divider>
-      <span class="about-me" title="关于我"><el-link :underline=false>❤️</el-link></span>
+      <span title="登录"><el-link :underline=false :href="'/login'">❤️登录</el-link></span>
     </div>
   </div>
 </template>
@@ -34,7 +34,7 @@ export default {
   overflow-y: auto;
   top: 0;
   bottom: 0;
-  left: 0;
+  left: 5%;
   width: 20%;
   background-color: #fff;
   background-size: contain;
@@ -78,4 +78,12 @@ export default {
   margin-top: 30px;
   text-align: center;
 }
+
+@media all and (max-width: 900px){
+  .sidebar {
+    display: none;
+  }
+}
+
+
 </style>

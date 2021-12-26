@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <el-container class="container">
-      <el-aside width="20%">
+      <el-aside class="el-aside" width="20%">
         <Sidebar></Sidebar>
       </el-aside>
       <el-main>
@@ -30,6 +30,12 @@ export default {
 
 .container {
   max-height: 100%;
+}
+
+@media all and (max-width: 900px){
+  .el-aside {
+    display: none;
+  }
 }
 
 </style>

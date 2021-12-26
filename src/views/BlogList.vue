@@ -1,4 +1,5 @@
 <template>
+  <Header class="header"></Header>
   <div class="blog-list">
     <div class="block" v-for="blog in blogs" :key="blog">
       <p class="blog-title">
@@ -23,9 +24,11 @@
 
 <script>
 import "star-markdown-css";
+import Header from "../components/Header";
 
 export default {
   name: "BlogList",
+  components: {Header},
   data() {
     return {
       blogs: {},
@@ -110,5 +113,12 @@ export default {
 .el-pagination.is-background .el-pager li:not(.disabled).active {
   background-color: #0078E7;
   color: #FFF;
+}
+
+
+@media all and (min-width: 900px) {
+  .header {
+    display: none;
+  }
 }
 </style>

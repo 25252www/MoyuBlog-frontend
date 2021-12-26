@@ -42,7 +42,7 @@ export default {
   min-width: 200px;
   max-width: 980px;
   margin: 0 auto;
-  padding: 45px;
+  padding: 0% 2%;
 }
 
 .markdown-body {
@@ -50,7 +50,7 @@ export default {
   min-width: 200px;
   max-width: 980px;
   margin: 0 auto;
-  padding: 0px 20px;
+  padding: 0% 2%;
 }
 
 .blog-title {
@@ -71,4 +71,5 @@ export default {
 .go-home {
   position: fixed;
 }
+
 </style>

@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .app-main{
-  margin-left: 15%;
-  margin-right: 15%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 </style>
