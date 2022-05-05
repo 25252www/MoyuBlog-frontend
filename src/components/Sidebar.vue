@@ -13,9 +13,9 @@
     </div>
     <div class="divider">
       <span title="首页"><el-link :underline=false :href="'/home'">🏠首页</el-link></span>
-      <el-divider direction="vertical"></el-divider>
-      <span title="分类"><el-link :underline=false>🏷️分类</el-link></span>
-      <el-divider direction="vertical"></el-divider>
+      <el-divider/>
+      <span title="实验室"><el-link :underline=false :href="'/lab'">🗺️实验室</el-link></span>
+      <el-divider/>
       <span title="登录"><el-link :underline=false :href="'/login'">❤️登录</el-link></span>
     </div>
   </div>
@@ -31,24 +31,10 @@ export default {
 
 .sidebar {
   position: fixed;
-  overflow-y: auto;
-  top: 0;
-  bottom: 0;
-  left: 5%;
-  width: 20%;
-  background-color: #fff;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: bottom 1rem center;
-  text-align: center;
-  z-index: 10;
-  transition-property: all;
-  transition-duration: .3s;
-  transition-delay: 0s;
+  margin-top: 120px;
 }
 
 .avatar {
-  margin-top: 90px;
   text-align: center;
 }
 
@@ -75,15 +61,9 @@ export default {
 }
 
 .divider {
-  margin-top: 30px;
+  width: 70%;
+  margin: 70px auto;
   text-align: center;
 }
-
-@media all and (max-width: 900px){
-  .sidebar {
-    display: none;
-  }
-}
-
 
 </style>

@@ -17,6 +17,11 @@
 - [x] https
 - [ ] 页面布局优化，自适应缩放
 
+## How to Start
+```shell
+    npm run serve
+```
+
 
 
 
