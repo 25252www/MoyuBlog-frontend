@@ -40,6 +40,7 @@ import 'codemirror/addon/scroll/simplescrollbars.css';
 // style
 import 'codemirror/lib/codemirror.css';
 
+
 VMdEditor.Codemirror = Codemirror;
 VMdEditor.use(githubTheme, {
     Hljs: hljs,
@@ -53,4 +54,5 @@ app.use(VueAxios, axios)
 app.use(store)
 app.use(VMdEditor);
 app.use(moment);
+
 app.mount('#app')
