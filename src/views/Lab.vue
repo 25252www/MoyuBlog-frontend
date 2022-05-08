@@ -1,8 +1,34 @@
 <template>
   <Header/>
   <div class="lab">
+    <div class="image-header-div">
+      <div class="wpb_wrapper">
+        <h1 class="title">SAR图像中的建筑物检测与分割</h1>
+      </div>
+    </div>
+    <div class="ai-module-introduce">
+      <div class="ai-module-header">
+        功能介绍
+        <!---->
+      </div>
+      <div class="ai-layout-a-item">
+        <div class="ai-layout-a-icon"></div>
+        <div class="ai-layout-a-info">
+          <div class="ai-layout-a-title">
+            建筑物检测与分割
+          </div>
+          <div class="ai-layout-a-des">
+            检测SAR图像中的建筑物并分割，返回RGB合成图及分割后的二值图，实现像素级高精度分割
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ai-module-header">
+      功能演示
+      <!---->
+    </div>
     <el-container class="el-container">
-      <el-aside width="200px">
+      <el-aside class="el-aside" width="200px">
         <el-upload
             class="upload-demo"
             drag
@@ -53,12 +79,121 @@ export default {
 
 <style scoped>
 
+.lab {
+  width: 100%;
+}
+
+.image-header-div {
+  width: 100%;
+  background-image: url("../assets/SN6-challenge-image-header.jpg");
+  background-repeat: repeat-x;
+  height: 300px;
+}
+
+.wpb_wrapper {
+  position: absolute;
+  top: 150px;
+  left: 15%;
+  width: 70%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.title {
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -webkit-box-direction: normal;
+  box-sizing: inherit;
+  font-family: "prometo", sans-serif;
+  line-height: 1.2;
+  margin: 0 0 20px;
+  font-size: 2rem;
+  font-weight: 400;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  margin-bottom: 0;
+}
+
+.ai-module-introduce {
+  font: 14px BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, PingFangSC-Regular, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-top: 70px;
+}
+
+.ai-module-header {
+  font: 14px BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, PingFangSC-Regular, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: 46px;
+  font-size: 30px;
+  color: #000;
+  letter-spacing: 0;
+  text-align: center;
+}
+
+.ai-layout-a-item {
+  font: 14px BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, PingFangSC-Regular, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  display: table-cell;
+  position: relative;
+  width: 1000px;
+  padding-right: 120px;
+}
+
+.ai-layout-a-icon {
+  font: 14px BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, PingFangSC-Regular, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  float: left;
+  width: 30px;
+  height: 38px;
+  background: no-repeat 50%;
+  background-size: 30px 30px;
+  background-image: url("../assets/ai-icon.png");
+}
+
+.ai-layout-a-info {
+  font: 14px BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, PingFangSC-Regular, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  margin-left: 50px;
+  color: #000;
+  letter-spacing: 0;
+  padding-bottom: 34px;
+}
+
+.ai-layout-a-title {
+  font: 14px BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, PingFangSC-Regular, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #000;
+  letter-spacing: 0;
+  font-size: 22px;
+  height: 38px;
+  line-height: 38px;
+  font-weight: 700;
+}
+
+.ai-layout-a-des {
+  font: 14px BlinkMacSystemFont, Roboto, Helvetica Neue, Helvetica, PingFangSC-Regular, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #000;
+  letter-spacing: 0;
+  font-size: 14px;
+  line-height: 24px;
+  margin-top: 10px;
+}
+
+
 .el-container {
-  margin: 100px auto 0 auto;
-  width: 1220px;
-  height: 520px;
+  margin: 30px auto 0 auto;
+  max-width: 1220px;
+  max-height: 520px;
   background-color: lightgray;
   border-radius: 5px;
+}
+
+.el-aside {
+  overflow: hidden;
 }
 
 .img-before {
@@ -69,8 +204,8 @@ export default {
 
 .img-after-div, .img-before-div {
   margin: 10px 10px 10px 0;
-  height: 500px;
-  width: 500px;
+  max-height: 500px;
+  max-width: 500px;
   background-color: #ffffff;
   border-radius: 5px;
 }
@@ -83,6 +218,7 @@ export default {
 
 .upload-demo {
   margin: 10px;
+  width: 100%;
 }
 
 ::v-deep .el-upload-dragger {

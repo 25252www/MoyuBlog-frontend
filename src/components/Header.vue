@@ -35,7 +35,7 @@ export default {
 }
 
 .el-divider {
-  margin: 5px 0;
+  margin: 5px 0 0 0;
 }
 
 .el-row {
