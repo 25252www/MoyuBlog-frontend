@@ -48,10 +48,10 @@
       </el-aside>
       <el-main class="el-main">
         <div class="img-before-div">
-          <img class="img-before" :src="require('../assets/img-before-demo.png')">
+          <img class="img-before" :src="outputImg.outputImgSAR" alt="">
         </div>
         <div class="img-after-div">
-          <img class="img-after" :src="require('../assets/img-after-demo.png')">
+          <img class="img-after" :src="outputImg.outputImgBinary" alt="">
         </div>
       </el-main>
     </el-container>
@@ -64,16 +64,14 @@ import Header from "../components/Header";
 export default {
   name: "Lab",
   components: {Header},
-  // data() {
-  //   return {
-  //     labelMap: {}
-  //   }
-  // },
-  // created() {
-  //   this.axios.get('/python/hello').then(res => {
-  //     this.labelMap = res.data.data;
-  //   })
-  // }
+  data() {
+    return {
+      outputImg: {
+        outputImgSAR: "https://cdn.moyusoldier.cn/outputImgSAR.png",
+        outputImgBinary: "https://cdn.moyusoldier.cn/outputImgBinary.png"
+      }
+    }
+  }
 }
 </script>
 
