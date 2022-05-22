@@ -32,7 +32,10 @@
         <el-upload
             class="upload-demo"
             drag
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action="https://upload-z2.qiniup.com"
+            :data="postData"
+            :before-upload="beforeUpload"
+            :on-success="onSuccess"
             multiple
         >
           <img class="upload-img" :src="require('../assets/upload.svg')" :width="50">
@@ -48,10 +51,10 @@
       </el-aside>
       <el-main class="el-main">
         <div class="img-before-div">
-          <img class="img-before" :src="outputImg.outputImgSAR" alt="">
+          <img class="img-before" :src="responseData.outputImgSARUrl" alt="">
         </div>
         <div class="img-after-div">
-          <img class="img-after" :src="outputImg.outputImgBinary" alt="">
+          <img class="img-after" :src="responseData.outputImgBinaryUrl" alt="">
         </div>
       </el-main>
     </el-container>
@@ -66,11 +69,39 @@ export default {
   components: {Header},
   data() {
     return {
-      outputImg: {
-        outputImgSAR: "https://cdn.moyusoldier.cn/outputImgSAR.png",
-        outputImgBinary: "https://cdn.moyusoldier.cn/outputImgBinary.png"
+      postData: {
+        key: "", //文件名
+        token: ""
+      },
+      requestData: {
+        inputImgUrl: ""
+      },
+      responseData: {
+        outputImgSARUrl: "https://cdn.moyusoldier.cn/outputImgSAR.png",
+        outputImgBinaryUrl: "https://cdn.moyusoldier.cn/outputImgBinary.png"
       }
     }
+  },
+  methods: {
+    beforeUpload(file) {
+      this.postData.key = `inputImg_${Math.round(new Date() / 1000)}_${file.name}`
+    },
+    onSuccess(res) {
+      console.log("上传成功")
+      console.log(res)
+      this.requestData.inputImgUrl = "https://cdn.moyusoldier.cn/" + res.key
+      this.axios.post('/python/doSegmentation', this.requestData).then(res => {
+        console.log(res)
+        this.responseData.outputImgSARUrl = res.data.data.outputImgSARUrl
+        this.responseData.outputImgBinaryUrl = res.data.data.outputImgBinaryUrl
+      })
+    }
+  },
+  created() {
+    this.axios.get('/python/getQiniuUploadToken').then(res => {
+      console.log(res)
+      this.postData.token = res.data.data
+    })
   }
 }
 </script>
@@ -216,7 +247,7 @@ export default {
 
 .upload-demo {
   margin: 10px;
-  width: 100%;
+  width: 90%;
 }
 
 ::v-deep .el-upload-dragger {
