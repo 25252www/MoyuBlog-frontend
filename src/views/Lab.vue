@@ -50,12 +50,26 @@
         </el-upload>
       </el-aside>
       <el-main class="el-main">
-        <div class="img-before-div">
-          <img class="img-before" :src="responseData.outputImgSARUrl" alt="">
-        </div>
-        <div class="img-after-div">
-          <img class="img-after" :src="responseData.outputImgBinaryUrl" alt="">
-        </div>
+        <el-skeleton :loading="loading" animated>
+          <template #template>
+            <div class="template-template">
+            <div class="img-before-div">
+              <el-skeleton-item class="img-before" variant="image" style="width: 500px; height: 500px"/>
+            </div>
+            <div class="img-after-div">
+              <el-skeleton-item class="img-after" variant="image" style="width: 500px; height: 500px"/>
+            </div>
+            </div>
+          </template>
+          <template #default>
+            <div class="img-before-div">
+              <img class="img-before" :src="responseData.outputImgSARUrl" alt="">
+            </div>
+            <div class="img-after-div">
+              <img class="img-after" :src="responseData.outputImgBinaryUrl" alt="">
+            </div>
+          </template>
+        </el-skeleton>
       </el-main>
     </el-container>
   </div>
@@ -69,6 +83,7 @@ export default {
   components: {Header},
   data() {
     return {
+      loading: false,
       postData: {
         key: "", //文件名
         token: ""
@@ -90,10 +105,12 @@ export default {
       console.log("上传成功")
       console.log(res)
       this.requestData.inputImgUrl = "https://cdn.moyusoldier.cn/" + res.key
+      this.loading = true
       this.axios.post('/python/doSegmentation', this.requestData).then(res => {
         console.log(res)
         this.responseData.outputImgSARUrl = res.data.data.outputImgSARUrl
         this.responseData.outputImgBinaryUrl = res.data.data.outputImgBinaryUrl
+        this.loading = false
       })
     }
   },
@@ -269,6 +286,10 @@ export default {
 
 .el-main {
   padding: 0;
+  display: flex;
+}
+
+.template-template{
   display: flex;
 }
 </style>

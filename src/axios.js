@@ -3,7 +3,7 @@ import { ElNotification } from 'element-plus'
 import router from './router'
 import {store} from './store'
 
-axios.defaults.timeout = 5000 // 请求超时
+axios.defaults.timeout = 60000 // 请求超时
 axios.defaults.baseURL = '/api/'
 
 // 前置拦截

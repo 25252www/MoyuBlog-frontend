@@ -15,12 +15,12 @@
         <el-input type="password" v-model="ruleForm.password"></el-input>
       </el-form-item>
 
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')"
+      <el-form-item class="el-form-item">
+        <el-button class="login-button" type="primary" @click="submitForm('ruleForm')"
         >登录
         </el-button
         >
-        <el-button @click="resetForm('ruleForm')">取消</el-button>
+        <el-button @click="register('ruleForm')">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -29,6 +29,7 @@
 
 <script>
 import Header from "../components/Header";
+import {ElNotification} from "element-plus";
 
 export default {
   name: "Login",
@@ -36,7 +37,7 @@ export default {
   data() {
     return {
       ruleForm: {
-        username: 'moyu',
+        username: '',
         password: ''
       },
       rules: {
@@ -68,8 +69,12 @@ export default {
             // 把数据共享出去
             _this.$store.commit("SET_TOKEN", jwt)
             _this.$store.commit("SET_USERINFO", userInfo)
-            //如果成功则跳转
-            _this.$router.push("/form")
+            // 如果成功则跳转
+            if (this.$route.query.redirect) {
+              this.$router.push(this.$route.query.redirect)
+            } else {
+              this.$router.push('/')
+            }
           })
         } else {
           console.log('error submit!!')
@@ -77,8 +82,13 @@ export default {
         }
       })
     },
-    resetForm(formName) {
-      this.$refs[formName].resetFields()
+    register() {
+      // this.$refs[formName].resetFields()
+      ElNotification({
+        title: 'Info',
+        message: '暂未开放注册',
+        type: 'info',
+      })
     },
   }
 }
@@ -86,13 +96,17 @@ export default {
 
 <style scoped>
 
-.login-container{
+.login-container {
   margin-top: 120px;
 }
 
 .login-el-form {
   max-width: 500px;
-  margin:auto;
+  margin: auto;
+}
+
+.el-form-item {
+  text-align: center;
 }
 
 </style>

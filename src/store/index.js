@@ -5,7 +5,8 @@ export const store = createStore({
         return {
             //属性
             token: '',
-            userInfo: JSON.parse(sessionStorage.getItem("userInfo"))
+            userInfo: JSON.parse(sessionStorage.getItem("userInfo")),
+            preLoginPath: ''
         }
     },
     mutations: {
@@ -18,6 +19,10 @@ export const store = createStore({
             state.userInfo = userInfo
             //浏览器关闭即删除，sessionStorage只能存String
             sessionStorage.setItem("userInfo", JSON.stringify(userInfo))
+        },
+        SET_PRELOGINPATH: (state, preLoginPath) => {
+            state.preLoginPath = preLoginPath
+            localStorage.setItem("preLoginPath", preLoginPath)
         },
         REMOVE_INFO: (state) => {
             state.token = ''

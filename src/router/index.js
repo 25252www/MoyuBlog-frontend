@@ -47,7 +47,10 @@ const routes = [
     },
     {
         path:'/lab',
-        component:()=>import('../views/Lab')
+        component:()=>import('../views/Lab'),
+        meta: {
+            requireAuth: true
+        }
     }
 ]
 

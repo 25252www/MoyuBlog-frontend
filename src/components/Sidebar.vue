@@ -16,7 +16,7 @@
       <el-divider/>
       <span title="实验室"><el-link :underline=false :href="'/lab'">🗺️实验室</el-link></span>
       <el-divider/>
-      <span title="登录"><el-link :underline=false :href="'/login'">❤️登录</el-link></span>
+      <span title="文章管理"><el-link :underline=false :href="'/form'">❤️文章管理</el-link></span>
     </div>
   </div>
 </template>
