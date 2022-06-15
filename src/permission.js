@@ -1,5 +1,4 @@
 import router from "./router";
-// import {store} from "./store";
 
 
 // 路由判断登录 根据路由配置文件的参数

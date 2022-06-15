@@ -1,11 +1,11 @@
 <template>
-  <div>
-    <h1 class="title">Blog List</h1>
+  <Header/>
+  <div class="form">
     <el-row class="line-display">
       <el-col :span="22" :offset="1">
         <el-button type="primary" @click="addBlog">写博客</el-button>
-        <el-button @click="goHome">回到首页</el-button>
         <el-table
+            class="el-table-tableData"
             :data="tableData"
             stripe
             style="width: 100%">
@@ -56,9 +56,11 @@
 
 <script>
 import moment from "moment";
+import Header from "../components/Header";
 
 export default {
   name: "Form",
+  components: {Header},
   data() {
     return {
       tableData: [],
@@ -95,18 +97,16 @@ export default {
         this.getTableData()
       })
     },
-    addBlog(){
+    addBlog() {
       this.$router.push('/blogs/add')
-    },
-    goHome(){
-      this.$router.push('/home')
     }
   }
 }
 </script>
 
 <style scoped>
-.title{
-  text-align: center;
+.form {
+  margin-top: 100px;
 }
+
 </style>
