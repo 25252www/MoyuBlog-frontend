@@ -1,17 +1,13 @@
 <template>
   <div class="app-main">
-    <BlogList></BlogList>
+    <router-view/>
   </div>
 </template>
 
 <script>
-import BlogList from "@/views/BlogList";
 
 export default {
-  name: "AppMain",
-  components:{
-    BlogList
-  }
+  name: "AppMain"
 }
 </script>
 

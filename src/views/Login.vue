@@ -1,5 +1,4 @@
 <template>
-  <Header/>
   <div class="login-container">
     <el-form
         ref="ruleForm"
@@ -28,12 +27,10 @@
 </template>
 
 <script>
-import Header from "../components/Header";
 import {ElNotification} from "element-plus";
 
 export default {
   name: "Login",
-  components: {Header},
   data() {
     return {
       ruleForm: {
@@ -97,7 +94,7 @@ export default {
 <style scoped>
 
 .login-container {
-  margin-top: 120px;
+  margin-top: 100px;
 }
 
 .login-el-form {

@@ -1,5 +1,4 @@
 <template>
-  <Header/>
   <div class="lab">
     <div class="image-header-div">
       <div class="wpb_wrapper">
@@ -53,12 +52,12 @@
         <el-skeleton :loading="loading" animated>
           <template #template>
             <div class="template-template">
-            <div class="img-before-div">
-              <el-skeleton-item class="img-before" variant="image" style="width: 500px; height: 500px"/>
-            </div>
-            <div class="img-after-div">
-              <el-skeleton-item class="img-after" variant="image" style="width: 500px; height: 500px"/>
-            </div>
+              <div class="img-before-div">
+                <el-skeleton-item class="img-before" variant="image" style="width: 500px; height: 500px"/>
+              </div>
+              <div class="img-after-div">
+                <el-skeleton-item class="img-after" variant="image" style="width: 500px; height: 500px"/>
+              </div>
             </div>
           </template>
           <template #default>
@@ -76,11 +75,9 @@
 </template>
 
 <script>
-import Header from "../components/Header";
 
 export default {
   name: "Lab",
-  components: {Header},
   data() {
     return {
       loading: false,
@@ -289,7 +286,7 @@ export default {
   display: flex;
 }
 
-.template-template{
+.template-template {
   display: flex;
 }
 </style>

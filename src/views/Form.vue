@@ -1,5 +1,4 @@
 <template>
-  <Header/>
   <div class="form">
     <el-row class="line-display">
       <el-col :span="22" :offset="1">
@@ -56,11 +55,9 @@
 
 <script>
 import moment from "moment";
-import Header from "../components/Header";
 
 export default {
   name: "Form",
-  components: {Header},
   data() {
     return {
       tableData: [],
@@ -105,8 +102,5 @@ export default {
 </script>
 
 <style scoped>
-.form {
-  margin-top: 100px;
-}
 
 </style>

@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Header from "../components/Header";
+import Header from "../layout/components/Header";
 
 export default {
   name: "Blog",

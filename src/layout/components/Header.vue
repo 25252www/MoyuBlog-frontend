@@ -1,14 +1,14 @@
 <template>
   <div class="header">
     <el-row class="el-row">
-      <el-col :span="4">
+      <el-col :span="6">
         <el-link class="home-el-link" :underline=false :href="'/home'">
-          <img class="logo" :src="require('../assets/logo.svg')">
+          <img class="logo" :src="require('../../assets/logo.svg')">
         </el-link>
       </el-col>
-      <el-col :span="4" :offset="16">
+      <el-col :span="4" :offset="14">
         <el-link class="login-el-link" :underline=false :href="'/login'">
-          <img class="login" :src="require('../assets/login.svg')">
+          <img class="login" :src="require('../../assets/login.svg')">
         </el-link>
       </el-col>
     </el-row>

@@ -1,13 +1,20 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
+
 const routes = [
     {
         path: '/',
-        name: 'Home',
-        component: () => import('../views/Home'),
+        component: () => import('../layout/Layout'),
+        redirect: '/dashboard',
         meta: {
-            description:"这里是摸鱼战士的小站🚀，记录技术，分享生活🌟，欢迎来玩！"
-        }
+            description: "这里是摸鱼战士的小站🚀，记录技术，分享生活🌟，欢迎来玩！"
+        },
+        children: [
+            {
+                path: 'dashboard',
+                component: () => import('../views/dashboard/index')
+            }
+        ]
     },
     {
         path: '/home',
@@ -15,42 +22,65 @@ const routes = [
     },
     {
         path: '/login',
-        name: 'Login',
-        component: () => import('../views/Login')
+        redirect: '/login/index',
+        component: () => import('../layout/Layout'),
+        children: [
+            {
+                path: 'index',
+                component: () => import('../views/Login')
+            }
+        ]
     },
     {
-        path: '/blogs/add',
-        name: 'BlogAdd',
-        component: () => import('../views/BlogEdit'),
+        path: '/blogs',
+        component: () => import('../layout/Layout'),
         meta: {
             requireAuth: true
-        }
+        },
+        children: [
+            {
+                path: '/blogs/add',
+                name: 'BlogAdd',
+                component: () => import('../views/BlogEdit'),
+            },
+            {
+                path: '/blogs/:id',
+                component: () => import('../views/Blog')
+            },
+            {
+                path: '/blogs/edit/:blogId',
+                name: 'BlogEdit',
+                component: () => import('../views/BlogEdit'),
+            }
+        ]
     },
     {
-        path: '/blogs/:id',
-        component: () => import('../views/Blog')
-    },
-    {
-        path: '/blogs/edit/:blogId',
-        name: 'BlogEdit',
-        component: () => import('../views/BlogEdit'),
+        path: '/form',
+        component: () => import('../layout/Layout'),
+        redirect: '/form/index',
         meta: {
             requireAuth: true
-        }
+        },
+        children: [
+            {
+                path: 'index',
+                component: () => import('../views/Form')
+            }
+        ]
     },
     {
-        path:'/form',
-        component: ()=>import('../views/Form'),
+        path: '/lab',
+        component: () => import('../layout/Layout'),
+        redirect: '/lab/index',
         meta: {
             requireAuth: true
-        }
-    },
-    {
-        path:'/lab',
-        component:()=>import('../views/Lab'),
-        meta: {
-            requireAuth: true
-        }
+        },
+        children: [
+            {
+                path: 'index',
+                component: () => import('../views/Lab')
+            }
+        ]
     }
 ]
 
