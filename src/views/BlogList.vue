@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import "star-markdown-css";
 
 export default {
   name: "BlogList",
