@@ -4,7 +4,7 @@
     <p class="blog-title">{{ blog.title }}</p>
     <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date.substr(0, 10) }} 🔍{{ blog.hits }}</p>
     <div class="markdown-body">
-      <v-md-editor class="markdown-body" v-model="blog.content" mode="preview"></v-md-editor>
+      <v-md-editor class="markdown-body" :model-value="blog.content" mode="preview"></v-md-editor>
     </div>
   </div>
 </template>

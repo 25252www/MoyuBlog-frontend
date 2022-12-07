@@ -1,5 +1,6 @@
 <template>
   <div class="form">
+    <h1 class="title">Blog List</h1>
     <el-row class="line-display">
       <el-col :span="22" :offset="1">
         <el-button type="primary" @click="addBlog">写博客</el-button>
@@ -26,7 +27,6 @@
           </el-table-column>
           <el-table-column
               prop="date"
-              :formatter="dateFormat"
               label="发布时间"
           >
           </el-table-column>
@@ -54,7 +54,6 @@
 </template>
 
 <script>
-import moment from "moment";
 
 export default {
   name: "Form",
@@ -76,14 +75,6 @@ export default {
         console.log(error);
       });
     },
-    //时间格式化
-    dateFormat: function (row, column) {
-      const date = row[column.property];
-      if (date === undefined) {
-        return ''
-      }
-      return moment(date).format("YYYY-MM-DD HH:mm:ss")
-    },
     handleEdit(index, row) {
       console.log(index, row)
       this.$router.push('/blogs/edit/' + row.id)
@@ -102,5 +93,9 @@ export default {
 </script>
 
 <style scoped>
+.title{
+  text-align: center;
+  margin-top: 70px;
+}
 
 </style>

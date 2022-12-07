@@ -34,14 +34,14 @@ const routes = [
     {
         path: '/blogs',
         component: () => import('../layout/Layout'),
-        meta: {
-            requireAuth: true
-        },
         children: [
             {
                 path: '/blogs/add',
                 name: 'BlogAdd',
                 component: () => import('../views/BlogEdit'),
+                meta: {
+                    requireAuth: true
+                },
             },
             {
                 path: '/blogs/:id',
@@ -51,6 +51,9 @@ const routes = [
                 path: '/blogs/edit/:blogId',
                 name: 'BlogEdit',
                 component: () => import('../views/BlogEdit'),
+                meta: {
+                    requireAuth: true
+                },
             }
         ]
     },

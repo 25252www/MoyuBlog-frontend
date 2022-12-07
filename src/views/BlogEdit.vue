@@ -13,7 +13,6 @@
         </el-form-item>
 
         <el-form-item label="摘要" prop="description">
-          <!--          <el-input type="textarea" v-model="ruleForm.description"></el-input>-->
           <v-md-editor v-model="ruleForm.description" height="200px"></v-md-editor>
         </el-form-item>
 
