@@ -32,6 +32,7 @@
 
 <script>
 import {ElMessageBox} from 'element-plus'
+import {editBlog, getBlogById} from "../api/blog";
 
 export default {
   name: "BlogEdit",
@@ -59,37 +60,28 @@ export default {
   methods: {
     fetchData() {
       const blogId = this.$route.params.blogId
-      console.log(blogId)
-      const _this = this
       if (blogId) {
-        this.axios.get('/blogs/' + blogId).then(res => {
+        getBlogById(blogId).then(res => {
           const blog = res.data.data
-          _this.ruleForm.id = blog.id
-          _this.ruleForm.title = blog.title
-          _this.ruleForm.description = blog.description
-          _this.ruleForm.content = blog.content
+          this.ruleForm.id = blog.id
+          this.ruleForm.title = blog.title
+          this.ruleForm.description = blog.description
+          this.ruleForm.content = blog.content
         })
       }
     },
     submitForm(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          const _this = this
-          this.axios.post('/blogs/edit', this.ruleForm, {
-            headers: {
-              "Authorization": localStorage.getItem("token")
-            }
-          }).then(res => {
-            console.log(res)
+          editBlog(this.ruleForm).then(() => {
             ElMessageBox.alert('操作成功', '提示', {
               confirmButtonText: '确定',
               callback: () => {
-                _this.$router.push("/form")
+                this.$router.push("/form")
               },
             })
           });
         } else {
-          console.log('error submit!!')
           return false
         }
       })

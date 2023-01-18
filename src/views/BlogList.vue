@@ -23,6 +23,8 @@
 
 <script>
 
+import {getCurrentPage} from "../api/blog";
+
 export default {
   name: "BlogList",
   data() {
@@ -38,21 +40,18 @@ export default {
   },
   methods: {
     page(current) {
-      const _this = this
-      _this.axios.get("/blogs?currentPage=" + current).then(res => {
-        _this.blogs = res.data.data.records
-        _this.current = res.data.data.current
-        _this.total = res.data.data.total
-        _this.size = res.data.data.size
+      getCurrentPage(current).then(res => {
+        this.blogs = res.data.data.records
+        this.current = res.data.data.current
+        this.total = res.data.data.total
+        this.size = res.data.data.size
         const MarkdownIt = require("markdown-it");
         const md = new MarkdownIt();
         for (let i = 0; i < this.blogs.length; i++) {
           const result = md.render(this.blogs[i].description);
           this.blogs[i].description = result
         }
-      }).catch(function (error) {
-        console.log(error);
-      });
+      })
     }
   }
 }

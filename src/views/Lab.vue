@@ -76,6 +76,8 @@
 
 <script>
 
+import {doSegmentation, getQiniuUploadToken} from "../api/lab";
+
 export default {
   name: "Lab",
   data() {
@@ -99,12 +101,9 @@ export default {
       this.postData.key = `inputImg_${Math.round(new Date() / 1000)}_${file.name}`
     },
     onSuccess(res) {
-      console.log("上传成功")
-      console.log(res)
       this.requestData.inputImgUrl = "https://cdn.moyusoldier.cn/" + res.key
       this.loading = true
-      this.axios.post('/python/doSegmentation', this.requestData).then(res => {
-        console.log(res)
+      doSegmentation(this.requestData).then(res => {
         this.responseData.outputImgSARUrl = res.data.data.outputImgSARUrl
         this.responseData.outputImgBinaryUrl = res.data.data.outputImgBinaryUrl
         this.loading = false
@@ -112,8 +111,7 @@ export default {
     }
   },
   created() {
-    this.axios.get('/python/getQiniuUploadToken').then(res => {
-      console.log(res)
+    getQiniuUploadToken().then(res => {
       this.postData.token = res.data.data
     })
   }

@@ -54,6 +54,7 @@
 </template>
 
 <script>
+import {deleteBlogById, getBlogList} from "../api/blog";
 
 export default {
   name: "Form",
@@ -69,19 +70,15 @@ export default {
   //VUE实例里的方法
   methods: {
     getTableData() {
-      this.axios.get('/blogs/all').then(res => {
+      getBlogList().then(res => {
         this.tableData = res.data.data
-      }).catch(function (error) {
-        console.log(error);
-      });
+      })
     },
     handleEdit(index, row) {
-      console.log(index, row)
       this.$router.push('/blogs/edit/' + row.id)
     },
     handleDelete(index, row) {
-      console.log(index, row)
-      this.axios.get('/blogs/delete/' + row.id).then(() => {
+      deleteBlogById(row.id).then(() => {
         this.getTableData()
       })
     },

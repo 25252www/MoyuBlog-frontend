@@ -11,6 +11,7 @@
 
 <script>
 import Header from "../layout/components/Header";
+import {getBlogById} from "../api/blog";
 
 export default {
   name: "Blog",
@@ -22,7 +23,7 @@ export default {
   },
   created() {
     const blogId = this.$route.params.id;
-    this.axios.get('/blogs/' + blogId).then(res => {
+    getBlogById(blogId).then(res => {
       this.blog = res.data.data;
     })
   }

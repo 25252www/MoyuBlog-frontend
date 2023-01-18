@@ -14,5 +14,6 @@ export default {
 <style scoped>
 .app-main{
   margin-top: 55px;
+  height: 100%;
 }
 </style>

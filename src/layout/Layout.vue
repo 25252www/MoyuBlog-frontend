@@ -23,6 +23,10 @@ export default {
 
 <style scoped>
 
+.layout {
+  height: 100%;
+}
+
 .header-container {
   width: 100%;
 }
