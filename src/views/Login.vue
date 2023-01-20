@@ -52,15 +52,13 @@
 </template>
 
 <script>
-import {login, register} from "../api/account";
-import {ElNotification} from "element-plus";
 
 export default {
   name: "Login",
   data() {
     return {
       activeName: 'login',
-      captchaImageUrl: 'http://localhost:8080/captcha.jpg',
+      captchaImageUrl: 'http://localhost:8080/user/captcha.jpg',
       loginForm: {
         username: null,
         password: null
@@ -151,19 +149,13 @@ export default {
     login(formName) {
       this.$refs[formName].validate((valid) => {
         if (valid) {
-          login(this.loginForm).then(res => {
-            const jwt = res.headers['authorization'];
-            const userInfo = res.data.data
-            // 把数据共享出去
-            this.$store.commit("SET_TOKEN", jwt)
-            this.$store.commit("SET_USERINFO", userInfo)
-            // 如果成功则跳转
-            if (this.$route.query.redirect) {
-              this.$router.push(this.$route.query.redirect)
-            } else {
-              this.$router.push('/')
-            }
-          })
+          this.$store.dispatch('user/login', this.loginForm)
+              .then(() => {
+                this.$store.dispatch('user/getInfo')
+              })
+              .then(() => {
+                this.$router.push({path: this.$route.query.redirect || '/'})
+              })
         } else {
           return false
         }
@@ -176,34 +168,24 @@ export default {
           if (this.registerForm.phone !== null && this.registerForm.phone.trim() === '') {
             this.registerForm.phone = null
           }
-          register(this.registerForm).then(res => {
-            const jwt = res.headers['authorization'];
-            const userInfo = res.data.data
-            // 把数据共享出去
-            this.$store.commit("SET_TOKEN", jwt)
-            this.$store.commit("SET_USERINFO", userInfo)
-            // 如果成功则跳转
-            if (this.$route.query.redirect) {
-              this.$router.push(this.$route.query.redirect)
-            } else {
-              this.$router.push('/')
-            }
-            ElNotification({
-              title: 'Info',
-              message: '注册成功',
-              type: 'info'
-            })
-          }).catch(() => {
-            this.refreshCaptchaImage()
-          })
+          this.$store.dispatch('user/register', this.registerForm)
+              .then(() => {
+                this.$store.dispatch('user/getInfo')
+              })
+              .then(() => {
+                this.$router.push({path: this.$route.query.redirect || '/'})
+              })
+              .catch(() => {
+                this.refreshCaptchaImage()
+              })
         } else {
           return false
         }
       })
     },
     refreshCaptchaImage() {
-      this.captchaImageUrl = 'http://localhost:8080/captcha.jpg?time=' + new Date().getTime()
-    }
+      this.captchaImageUrl = 'http://localhost:8080/user/captcha.jpg?time=' + new Date().getTime()
+    },
   },
   mounted() {
     this.refreshCaptchaImage()

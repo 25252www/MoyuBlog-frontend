@@ -1,22 +1,20 @@
 <template>
-  <div class="sidebar">
-    <div class="avatar">
+  <div id="sidebar-container">
+    <div id="me-div">
       <el-avatar :size="140" :src="require('../assets/me.jpg')"></el-avatar>
-    </div>
-    <div class="link">
       <p>
-        <el-link class="about-me" title="关于我" :underline=false>摸鱼战士</el-link>
+        <router-link id="about-me" title="关于我" to="/">摸鱼战士</router-link>
       </p>
       <p>
-        <el-link class="about-station" title="关于小站" :underline=false>摸鱼战士的小站</el-link>
+        <router-link id="about-station" title="关于小站" to="/">摸鱼战士的小站</router-link>
       </p>
     </div>
-    <div class="divider">
-      <span title="首页"><el-link :underline=false :href="'/home'">🏠首页</el-link></span>
+    <div id="divider">
+      <span title="首页"><router-link to="/">🏠首页</router-link></span>
       <el-divider/>
-      <span title="实验室"><el-link :underline=false :href="'/lab'">🗺️实验室</el-link></span>
+      <span title="实验室"><router-link to="/lab">🗺️实验室</router-link></span>
       <el-divider/>
-      <span title="文章管理"><el-link :underline=false :href="'/form'">❤️文章管理</el-link></span>
+      <span title="文章管理"><router-link to="/form">❤️文章管理</router-link></span>
     </div>
   </div>
 </template>
@@ -27,43 +25,51 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-.sidebar {
+a{
+  text-decoration: none;
+}
+
+#sidebar-container {
   position: fixed;
   margin-top: 120px;
+
+  > #me-div {
+    text-align: center;
+  }
+
+  > #divider {
+    width: 70%;
+    margin: 70px auto;
+    text-align: center;
+
+    > span {
+      > a {
+        text-decoration: none;
+        color: #555555;
+      }
+    }
+  }
 }
 
-.avatar {
-  text-align: center;
-}
-
-.link {
-  text-align: center;
-}
-
-.about-me {
+#about-me{
   color: #0078E7;
   font-size: 16px;
-  text-align: center;
+
+  &:hover{
+    color: #CC0000;
+  }
 }
 
-.about-me:hover {
-  color: #CC0000;
+#about-station{
+  color: #555555
+;
+
+  &:hover{
+    color: #CC0000;
+  }
 }
 
-.about-station {
-  color: #555555;
-}
-
-.about-station:hover {
-  color: #CC0000;
-}
-
-.divider {
-  width: 70%;
-  margin: 70px auto;
-  text-align: center;
-}
 
 </style>

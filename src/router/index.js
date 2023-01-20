@@ -1,55 +1,45 @@
 import {createRouter, createWebHistory} from 'vue-router'
 
+import Layout from '../layout'
+
 
 const routes = [
     {
+        path: '/login',
+        component: () => import('../views/Login'),
+    },
+    {
+        path: '/404',
+        component: () => import('../views/404'),
+        hidden: true
+    },
+    {
         path: '/',
-        component: () => import('../layout/Layout'),
-        redirect: '/dashboard',
-        meta: {
-            description: "这里是摸鱼战士的小站🚀，记录技术，分享生活🌟，欢迎来玩！"
-        },
+        component: Layout,
         children: [
             {
-                path: 'dashboard',
+                path: '',
                 component: () => import('../views/dashboard/index')
             }
         ]
     },
     {
-        path: '/home',
-        redirect: '/'
-    },
-    {
-        path: '/login',
-        redirect: '/login/index',
-        component: () => import('../layout/Layout'),
-        children: [
-            {
-                path: 'index',
-                component: () => import('../views/Login')
-            }
-        ]
-    },
-    {
         path: '/blogs',
-        component: () => import('../layout/Layout'),
+        component: Layout,
         children: [
             {
-                path: '/blogs/add',
-                name: 'BlogAdd',
+                path: 'add',
                 component: () => import('../views/BlogEdit'),
                 meta: {
                     requireAuth: true
                 },
             },
             {
-                path: '/blogs/:id',
+                path: ':id',
                 component: () => import('../views/Blog')
             },
             {
-                path: '/blogs/edit/:blogId',
-                name: 'BlogEdit',
+                path: 'edit/:blogId',
                 component: () => import('../views/BlogEdit'),
                 meta: {
                     requireAuth: true
@@ -59,32 +49,32 @@ const routes = [
     },
     {
         path: '/form',
-        component: () => import('../layout/Layout'),
-        redirect: '/form/index',
+        component: Layout,
         meta: {
             requireAuth: true
         },
         children: [
             {
-                path: 'index',
+                path: '',
                 component: () => import('../views/Form')
             }
         ]
     },
     {
         path: '/lab',
-        component: () => import('../layout/Layout'),
-        redirect: '/lab/index',
+        component: Layout,
         meta: {
             requireAuth: true
         },
         children: [
             {
-                path: 'index',
+                path: '',
                 component: () => import('../views/Lab')
             }
         ]
-    }
+    },
+    // 404 page must be placed at the end !!!
+    {path: '/:pathMatch(.*)*', redirect: '/404', hidden: true}
 ]
 
 const router = createRouter({
@@ -92,5 +82,12 @@ const router = createRouter({
     routes
 })
 
+export function resetRouter() {
+    const newRouter = createRouter({
+        history: createWebHistory(),
+        routes
+    })
+    router.matcher = newRouter.matcher // reset router
+}
 
 export default router

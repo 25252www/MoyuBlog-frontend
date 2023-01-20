@@ -2,20 +2,21 @@
   <div class="blog-list">
     <div class="block" v-for="blog in blogs" :key="blog">
       <p class="blog-title">
-        <el-link class="blog-title-link" :underline="false" :href="'/blogs/'+ blog.id">
+        <router-link class="blog-title-link" :to="'/blogs/'+ blog.id">
           {{ blog.title }}
-        </el-link>
+        </router-link>
       </p>
       <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date }} 🔍{{ blog.hits }}</p>
       <div class="markdown-body" v-html="blog.description"/>
     </div>
-    <el-pagination class="mpage"
+    <el-pagination id="blog-list-pagination"
                    background
                    layout="prev, pager, next"
                    :current-page="current"
                    :page-size="size"
                    :total="total"
                    @current-change="page"
+
     >
     </el-pagination>
   </div>
@@ -83,7 +84,6 @@ export default {
   color: #0078E7;
   text-decoration: none;
   transition: color .1s;
-  /*cursor: url(https://cdn.jsdelivr.net/gh/YunYouJun/cdn/css/md-cursors/link.cur),pointer;*/
 }
 
 .blog-title-link:hover {
@@ -101,14 +101,10 @@ export default {
   padding: 2% 5%;
 }
 
-.mpage {
+#blog-list-pagination {
   margin-top: 10px;
-  text-align: center;
+  justify-content: center;
 }
 
-::v-deep .el-pagination.is-background .el-pager li:not(.disabled).active {
-  background-color: #0078E7;
-  color: #FFF;
-}
 
 </style>

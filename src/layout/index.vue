@@ -1,8 +1,6 @@
 <template>
   <div class="layout">
-    <div class="header-container">
-      <Header/>
-    </div>
+    <Header/>
     <AppMain/>
   </div>
 </template>
@@ -25,10 +23,6 @@ export default {
 
 .layout {
   height: 100%;
-}
-
-.header-container {
-  width: 100%;
 }
 
 

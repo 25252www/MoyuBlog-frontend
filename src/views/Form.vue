@@ -33,13 +33,11 @@
           <el-table-column label="操作">
             <template #default="scope">
               <el-button
-                  size="mini"
                   @click="handleEdit(scope.$index, scope.row)">Edit
               </el-button>
               <el-popconfirm title="确定要删除吗?" @confirm="handleDelete(scope.$index, scope.row)">
                 <template #reference>
                   <el-button
-                      size="mini"
                       type="danger"
                   >Delete
                   </el-button>

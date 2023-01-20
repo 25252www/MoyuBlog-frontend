@@ -1,18 +1,23 @@
 <template>
-  <div class="app-main">
-    <router-view/>
-  </div>
+  <section class="app-main">
+    <router-view :key="key"/>
+  </section>
 </template>
 
 <script>
 
 export default {
-  name: "AppMain"
+  name: "AppMain",
+  computed: {
+    key() {
+      return this.$route.path
+    }
+  }
 }
 </script>
 
 <style scoped>
-.app-main{
+.app-main {
   margin-top: 55px;
   height: 100%;
 }
