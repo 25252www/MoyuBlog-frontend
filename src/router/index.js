@@ -2,8 +2,12 @@ import {createRouter, createWebHistory} from 'vue-router'
 
 import Layout from '../layout'
 
-
-const routes = [
+/**
+ * constantRoutes
+ * a base page that does not have permission requirements
+ * all roles can be accessed
+ */
+export const constantRoutes = [
     {
         path: '/login',
         component: () => import('../views/Login'),
@@ -11,7 +15,6 @@ const routes = [
     {
         path: '/404',
         component: () => import('../views/404'),
-        hidden: true
     },
     {
         path: '/',
@@ -28,21 +31,34 @@ const routes = [
         component: Layout,
         children: [
             {
+                path: ':id',
+                component: () => import('../views/Blog')
+            },
+        ]
+    },
+]
+
+/**
+ * asyncRoutes
+ * the routes that need to be dynamically loaded based on user roles
+ */
+export const asyncRoutes = [
+    {
+        path: '/blogs',
+        component: Layout,
+        children: [
+            {
                 path: 'add',
                 component: () => import('../views/BlogEdit'),
                 meta: {
-                    requireAuth: true
+                    roles: ['admin']
                 },
-            },
-            {
-                path: ':id',
-                component: () => import('../views/Blog')
             },
             {
                 path: 'edit/:blogId',
                 component: () => import('../views/BlogEdit'),
                 meta: {
-                    requireAuth: true
+                    roles: ['admin']
                 },
             }
         ]
@@ -51,7 +67,7 @@ const routes = [
         path: '/form',
         component: Layout,
         meta: {
-            requireAuth: true
+            roles: ['admin']
         },
         children: [
             {
@@ -64,7 +80,7 @@ const routes = [
         path: '/lab',
         component: Layout,
         meta: {
-            requireAuth: true
+            roles: ['admin']
         },
         children: [
             {
@@ -74,19 +90,16 @@ const routes = [
         ]
     },
     // 404 page must be placed at the end !!!
-    {path: '/:pathMatch(.*)*', redirect: '/404', hidden: true}
+    {path: '/:pathMatch(.*)*', redirect: '/404'}
 ]
 
 const router = createRouter({
     history: createWebHistory(),
-    routes
+    routes: constantRoutes,
 })
 
 export function resetRouter() {
-    const newRouter = createRouter({
-        history: createWebHistory(),
-        routes
-    })
+    const newRouter = router
     router.matcher = newRouter.matcher // reset router
 }
 

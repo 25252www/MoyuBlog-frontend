@@ -10,17 +10,25 @@
         <router-link v-if="!token" to="/login">
           登录/注册
         </router-link>
-        <el-dropdown trigger="click">
+        <el-dropdown trigger="click" size="large">
           <el-avatar v-if="token && avatar" :size="30" :src="avatar"/>
           <img v-if="token && !avatar" style="height: 30px" :src="require('../../assets/avatar.svg')"/>
           <template #dropdown>
-            <el-dropdown-item>
-              <router-link to="/userSpace">
-                个人中心
-              </router-link>
-            </el-dropdown-item>
-            <el-dropdown-item>
-              <p id="logout-p" @click="logout">退出</p>
+
+            <router-link to="/userSpace">
+              <el-dropdown-item>个人中心</el-dropdown-item>
+            </router-link>
+
+            <router-link to="/lab">
+              <el-dropdown-item v-if="token && roles.includes('admin')" divided>实验室</el-dropdown-item>
+            </router-link>
+
+            <router-link to="/form">
+              <el-dropdown-item v-if="token && roles.includes('admin')" divided>文章管理</el-dropdown-item>
+            </router-link>
+
+            <el-dropdown-item divided @click="logout">
+              <span>退出</span>
             </el-dropdown-item>
           </template>
         </el-dropdown>
@@ -40,10 +48,12 @@ export default {
     ...mapGetters([
       'token',
       'avatar',
+      'roles',
     ])
   },
   methods: {
     async logout() {
+      console.log("logout in Header.vue");
       await this.$store.dispatch('user/logout')
       this.$router.push('/')
     },
@@ -70,6 +80,7 @@ export default {
   > .el-divider {
     margin: 5px 0 0 0;
   }
+
 }
 
 a {
@@ -81,12 +92,5 @@ a {
   }
 }
 
-#logout-p {
-  margin: 0;
-
-  &:hover {
-    color: var(--el-color-primary);
-  }
-}
 
 </style>

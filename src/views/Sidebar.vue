@@ -9,13 +9,6 @@
         <router-link id="about-station" title="关于小站" to="/">摸鱼战士的小站</router-link>
       </p>
     </div>
-    <div id="divider">
-      <span title="首页"><router-link to="/">🏠首页</router-link></span>
-      <el-divider/>
-      <span title="实验室"><router-link to="/lab">🗺️实验室</router-link></span>
-      <el-divider/>
-      <span title="文章管理"><router-link to="/form">❤️文章管理</router-link></span>
-    </div>
   </div>
 </template>
 

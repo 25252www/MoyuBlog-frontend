@@ -151,9 +151,6 @@ export default {
         if (valid) {
           this.$store.dispatch('user/login', this.loginForm)
               .then(() => {
-                this.$store.dispatch('user/getInfo')
-              })
-              .then(() => {
                 this.$router.push({path: this.$route.query.redirect || '/'})
               })
         } else {
@@ -169,9 +166,6 @@ export default {
             this.registerForm.phone = null
           }
           this.$store.dispatch('user/register', this.registerForm)
-              .then(() => {
-                this.$store.dispatch('user/getInfo')
-              })
               .then(() => {
                 this.$router.push({path: this.$route.query.redirect || '/'})
               })

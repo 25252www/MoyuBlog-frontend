@@ -7,7 +7,7 @@ const getDefaultState = () => {
     return {
         token: getToken(),
         username: '',
-        role: '',
+        roles: [],
         avatar: '',
         phone: '',
     }
@@ -25,8 +25,8 @@ const mutations = {
     SET_USERNAME: (state, username) => {
         state.username = username
     },
-    SET_ROLE: (state, role) => {
-        state.role = role
+    SET_ROLES: (state, roles) => {
+        state.roles = roles
     },
     SET_AVATAR: (state, avatar) => {
         state.avatar = avatar
@@ -73,10 +73,10 @@ const actions = {
             getInfo(state.token).then(res => {
                 const userInfo = res.data.data
                 commit('SET_USERNAME', userInfo.username)
-                commit('SET_ROLE', userInfo.role)
+                commit('SET_ROLES', userInfo.roles)
                 commit('SET_AVATAR', userInfo.avatar)
                 commit('SET_PHONE', userInfo.phone)
-                resolve()
+                resolve(userInfo)
             }).catch(error => {
                 reject(error)
             })
@@ -86,6 +86,7 @@ const actions = {
     logout({commit}) {
         return new Promise((resolve, reject) => {
             logout().then(() => {
+                console.log("logout success")
                 removeToken()
                 resetRouter()
                 commit('RESET_STATE')
