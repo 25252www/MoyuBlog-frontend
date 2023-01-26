@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="reply-box-send">
-        <button class="send-text" @click="sendReply">发布</button>
+        <span class="send-text" @click="sendReply">发布</span>
       </div>
     </div>
   </div>
