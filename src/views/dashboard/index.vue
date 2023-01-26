@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Sidebar from "../Sidebar";
-import BlogList from "../BlogList";
+import Sidebar from "./components/Sidebar";
+import BlogList from "./components/BlogList";
 
 export default {
   name: "index",

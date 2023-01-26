@@ -1,7 +1,7 @@
 <template>
   <div id="sidebar-container">
     <div id="me-div">
-      <el-avatar :size="140" :src="require('../assets/me.jpg')"></el-avatar>
+      <el-avatar :size="140" src="https://cdn.moyusoldier.cn/me.jpg"></el-avatar>
       <p>
         <router-link id="about-me" title="关于我" to="/">摸鱼战士</router-link>
       </p>

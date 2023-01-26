@@ -2,6 +2,7 @@ const CompressionPlugin = require("compression-webpack-plugin");
 
 // vue.config.js
 module.exports = {
+    productionSourceMap: false,
     devServer: {
         port: 8081,
         //以上的ip和端口是我们本机的;下面为需要跨域的

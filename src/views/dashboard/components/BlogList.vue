@@ -24,7 +24,7 @@
 
 <script>
 
-import {getCurrentPage} from "../api/blog";
+import {getCurrentPage} from "../../../api/blog";
 
 export default {
   name: "BlogList",

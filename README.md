@@ -1,5 +1,5 @@
 # MoyuBlog -FrontEnd
-[摸鱼战士的小站](http://moyusoldier.cloud)-前端
+[摸鱼战士的小站](http://moyusoldier.cn)-前端
 
 
 ## 技术栈
@@ -11,11 +11,12 @@
 - v-md-editor
 
 ## 功能
-- [x] 首页
-- [x] 登录页及后台
-- [x] goHome
+- [x] 用户登录、注册
+- [x] 博客CRUD
+- [x] 二级评论、回复
+- [x] 后台管理
 - [x] https
-- [ ] 页面布局优化，自适应缩放
+- [x] SAR图像中建筑物检测与分割
 
 ## How to Start
 ```shell

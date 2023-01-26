@@ -3,7 +3,7 @@
     <el-row justify="center" align="middle">
       <el-col :span="6">
         <router-link id="logo-link" to="/">
-          <img style="height: 30px" :src="require('../../assets/logo.svg')"/>
+          <img style="height: 30px" src="https://cdn.moyusoldier.cn/logo.svg"/>
         </router-link>
       </el-col>
       <el-col :span="4" :offset="14">
@@ -12,7 +12,7 @@
         </router-link>
         <el-dropdown trigger="click" size="large">
           <el-avatar v-if="token && avatar" :size="30" :src="avatar"/>
-          <img v-if="token && !avatar" style="height: 30px" :src="require('../../assets/avatar.svg')"/>
+          <img v-if="token && !avatar" style="height: 30px" src="https://cdn.moyusoldier.cn/avatar.svg"/>
           <template #dropdown>
 
             <router-link to="/userSpace">

@@ -6,6 +6,7 @@ import {ElNotification} from "element-plus";
 const getDefaultState = () => {
     return {
         token: getToken(),
+        id: null,
         username: '',
         roles: [],
         avatar: '',
@@ -18,6 +19,9 @@ const state = getDefaultState()
 const mutations = {
     RESET_STATE: (state) => {
         Object.assign(state, getDefaultState())
+    },
+    SET_ID: (state, id) => {
+        state.id = id
     },
     SET_TOKEN: (state, token) => {
         state.token = token
@@ -72,6 +76,7 @@ const actions = {
         return new Promise((resolve, reject) => {
             getInfo(state.token).then(res => {
                 const userInfo = res.data.data
+                commit("SET_ID", userInfo.id)
                 commit('SET_USERNAME', userInfo.username)
                 commit('SET_ROLES', userInfo.roles)
                 commit('SET_AVATAR', userInfo.avatar)

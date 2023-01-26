@@ -10,11 +10,11 @@ import Layout from '../layout'
 export const constantRoutes = [
     {
         path: '/login',
-        component: () => import('../views/Login'),
+        component: () => import('../views/login/Login'),
     },
     {
         path: '/404',
-        component: () => import('../views/404'),
+        component: () => import('../views/error-page/404'),
     },
     {
         path: '/',
@@ -32,7 +32,7 @@ export const constantRoutes = [
         children: [
             {
                 path: ':id',
-                component: () => import('../views/Blog')
+                component: () => import('../views/blog-detail/BlogDetail')
             },
         ]
     },

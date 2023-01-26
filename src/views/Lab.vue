@@ -37,7 +37,7 @@
             :on-success="onSuccess"
             multiple
         >
-          <img class="upload-img" :src="require('../assets/upload.svg')" :width="50">
+          <img class="upload-img" src="https://cdn.moyusoldier.cn/upload.svg" :width="50">
           <div class="el-upload__text">
             拖拽图片到此处 <p>或 <em>点击选择</em></p>>
           </div>
@@ -126,7 +126,7 @@ export default {
 
 .image-header-div {
   width: 100%;
-  background-image: url("../assets/SN6-challenge-image-header.jpg");
+  background-image: url(https://cdn.moyusoldier.cn/SN6-challenge-image-header.jpg);
   background-repeat: repeat-x;
   height: 300px;
 }
@@ -146,13 +146,12 @@ export default {
   box-sizing: inherit;
   font-family: "prometo", sans-serif;
   line-height: 1.2;
-  margin: 0 0 20px;
   font-size: 2rem;
   font-weight: 400;
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 .ai-module-introduce {
@@ -190,7 +189,7 @@ export default {
   height: 38px;
   background: no-repeat 50%;
   background-size: 30px 30px;
-  background-image: url("../assets/ai-icon.png");
+  background-image: url(https://cdn.moyusoldier.cn/ai-icon.png);
 }
 
 .ai-layout-a-info {
