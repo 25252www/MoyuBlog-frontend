@@ -58,7 +58,7 @@ export default {
   data() {
     return {
       activeName: 'login',
-      captchaImageUrl: 'http://localhost:8080/user/captcha.jpg',
+      captchaImageUrl: 'https://www.moyusoldier.cn/api/user/captcha.jpg',
       loginForm: {
         username: null,
         password: null
@@ -178,7 +178,7 @@ export default {
       })
     },
     refreshCaptchaImage() {
-      this.captchaImageUrl = 'http://localhost:8080/user/captcha.jpg?time=' + new Date().getTime()
+      this.captchaImageUrl = 'https://www.moyusoldier.cn/api/user/captcha.jpg?time=' + new Date().getTime()
     },
   },
   mounted() {
