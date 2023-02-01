@@ -1,6 +1,6 @@
 <template>
   <el-row>
-    <el-col class="sidebar-container" :span="4" :offset="2">
+    <el-col class="sidebar-container hidden-xs-only" :span="6">
       <Sidebar/>
     </el-col>
     <el-col :span="16" :xs="{span: 20, offset: 2}">
@@ -10,22 +10,16 @@
 </template>
 
 <script>
-import Sidebar from "./components/Sidebar";
 import BlogList from "./components/BlogList";
+import 'element-plus/theme-chalk/display.css'
+import Sidebar from "../../components/index/Sidebar";
 
 export default {
   name: "index",
-  components: {BlogList, Sidebar}
+  components: {Sidebar, BlogList}
 }
 </script>
 
 <style scoped>
-
-/*sidebar的响应式布局，当小于768px时隐藏，与.appmain-container对应*/
-@media all and (max-width: 768px) {
-  .sidebar-container {
-    display: none;
-  }
-}
 
 </style>

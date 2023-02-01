@@ -32,10 +32,24 @@ export const constantRoutes = [
         children: [
             {
                 path: ':id',
-                component: () => import('../views/blog-detail/BlogDetail')
+                component: () => import('../views/blog-detail')
             },
         ]
     },
+    {
+        path: '/about',
+        component: Layout,
+        children: [
+            {
+                path: '',
+                component: () => import('../views/about')
+            },
+            {
+                path: 'site',
+                component: () => import('../views/about-site')
+            }
+        ]
+    }
 ]
 
 /**

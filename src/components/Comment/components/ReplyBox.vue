@@ -59,7 +59,7 @@ export default {
     model: Object
   },
   emits: ['sendReply'],
-  inject: ['getReplyByBlogId'],
+  inject: ['blogId', 'getRepliesByBlogId'],
   data() {
     return {
       input: '',
@@ -72,7 +72,7 @@ export default {
       if (this.model === null) {
         reply = {
           userId: this.id,
-          blogId: this.$route.params.id,
+          blogId: this.blogId,
           content: this.input
         }
       }
@@ -84,7 +84,7 @@ export default {
           parentUsername: this.model.username,
           rootId: this.model.id,
           userId: this.id,
-          blogId: this.model.blogId,
+          blogId: this.blogId,
           content: this.input,
         }
       }
@@ -95,7 +95,7 @@ export default {
           parentUsername: this.model.username,
           rootId: this.model.rootId,
           userId: this.id,
-          blogId: this.model.blogId,
+          blogId: this.blogId,
           content: this.input,
         }
       }
@@ -105,7 +105,7 @@ export default {
           type: 'info'
         })
         // 评论成功后，调用BlogDetail.vue中的方法刷新评论列表
-        this.getReplyByBlogId(this.$route.params.id)
+        this.getRepliesByBlogId(this.blogId)
         // 清空输入框
         this.input = ''
       })

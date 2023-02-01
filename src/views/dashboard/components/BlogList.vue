@@ -30,7 +30,7 @@ export default {
   name: "BlogList",
   data() {
     return {
-      blogs: {},
+      blogs: [],
       current: 1,
       total: 0,
       size: 7
@@ -42,10 +42,17 @@ export default {
   methods: {
     page(current) {
       getCurrentPage(current).then(res => {
-        this.blogs = res.data.data.records
         this.current = res.data.data.current
         this.total = res.data.data.total
         this.size = res.data.data.size
+        // 根据id删除不想展示的博客 54-关于我 55-关于站点
+        for (let i = 0; i < res.data.data.records.length; i++) {
+          if (res.data.data.records[i].id === 54 || res.data.data.records[i].id === 55) {
+            this.size--
+            continue
+          }
+          this.blogs.push(res.data.data.records[i])
+        }
         const MarkdownIt = require("markdown-it");
         const md = new MarkdownIt();
         for (let i = 0; i < this.blogs.length; i++) {
@@ -97,7 +104,7 @@ export default {
 }
 
 .markdown-body {
-  margin: 0% 5%;
+  margin: 0 5%;
   padding: 2% 5%;
 }
 

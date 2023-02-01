@@ -36,7 +36,7 @@ export function deleteBlogById(id) {
     })
 }
 
-export function getReplyByBlogId(id) {
+export function getRepliesByBlogId(id) {
     return request({
         url: '/comment/' + id,
         method: 'get'
