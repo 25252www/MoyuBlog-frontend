@@ -15,7 +15,7 @@ import 'element-plus/theme-chalk/display.css'
 import Sidebar from "../../components/index/Sidebar";
 
 export default {
-  name: "index",
+  name: "Dashboard",
   components: {Sidebar, BlogList}
 }
 </script>

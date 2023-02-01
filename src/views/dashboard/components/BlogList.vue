@@ -45,6 +45,7 @@ export default {
         this.current = res.data.data.current
         this.total = res.data.data.total
         this.size = res.data.data.size
+        this.blogs = []
         // 根据id删除不想展示的博客 54-关于我 55-关于站点
         for (let i = 0; i < res.data.data.records.length; i++) {
           if (res.data.data.records[i].id === 54 || res.data.data.records[i].id === 55) {

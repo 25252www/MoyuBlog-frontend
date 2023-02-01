@@ -1,6 +1,10 @@
 <template>
   <section class="app-main">
-    <router-view :key="key"/>
+    <router-view v-slot="{ Component }">
+      <keep-alive :include="['Dashboard']">
+        <component :is="Component" :key="key"/>
+      </keep-alive>
+    </router-view>
   </section>
 </template>
 
