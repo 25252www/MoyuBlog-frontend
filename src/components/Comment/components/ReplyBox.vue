@@ -51,7 +51,7 @@ export default {
   computed: {
     ...mapGetters([
       'token',
-      'id',
+      'userId',
       'avatar',
     ])
   },
@@ -71,7 +71,7 @@ export default {
       // 如果是一级评论
       if (this.model === null) {
         reply = {
-          userId: this.id,
+          userId: this.userId,
           blogId: this.blogId,
           content: this.input
         }
@@ -83,7 +83,7 @@ export default {
           parentId: this.model.id,
           parentUsername: this.model.username,
           rootId: this.model.id,
-          userId: this.id,
+          userId: this.userId,
           blogId: this.blogId,
           content: this.input,
         }
@@ -94,7 +94,7 @@ export default {
           parentId: this.model.id,
           parentUsername: this.model.username,
           rootId: this.model.rootId,
-          userId: this.id,
+          userId: this.userId,
           blogId: this.blogId,
           content: this.input,
         }
