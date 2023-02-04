@@ -1,24 +1,35 @@
 <template>
   <div class="blog-list">
-    <div class="block" v-for="blog in blogs" :key="blog">
-      <p class="blog-title">
-        <router-link class="blog-title-link" :to="'/blogs/'+ blog.id">
-          {{ blog.title }}
-        </router-link>
-      </p>
-      <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date }} 🔍{{ blog.hits }}</p>
-      <div class="markdown-body" v-html="blog.description"/>
-    </div>
-    <el-pagination id="blog-list-pagination"
-                   background
-                   layout="prev, pager, next"
-                   :current-page="current"
-                   :page-size="size"
-                   :total="total"
-                   @current-change="page"
+    <el-skeleton :loading="loading" animated>
+      <template #template>
+        <div class="block" v-for="index of 7" :key="index">
+          <div class="skeleton-container">
+          <el-skeleton class="loading-skeleton" :rows="4" animated/>
+          </div>
+        </div>
+      </template>
+      <template #default>
+        <div class="block" v-for="blog in blogs" :key="blog">
+          <p class="blog-title">
+            <router-link class="blog-title-link" :to="'/blogs/'+ blog.id">
+              {{ blog.title }}
+            </router-link>
+          </p>
+          <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date }} 🔍{{ blog.hits }}</p>
+          <div class="markdown-body" v-html="blog.description"/>
+        </div>
+        <el-pagination id="blog-list-pagination"
+                       background
+                       layout="prev, pager, next"
+                       :current-page="current"
+                       :page-size="size"
+                       :total="total"
+                       @current-change="page"
 
-    >
-    </el-pagination>
+        >
+        </el-pagination>
+      </template>
+    </el-skeleton>
   </div>
 </template>
 
@@ -30,6 +41,7 @@ export default {
   name: "BlogList",
   data() {
     return {
+      loading: true,
       blogs: [],
       current: 1,
       total: 0,
@@ -57,21 +69,34 @@ export default {
         const MarkdownIt = require("markdown-it");
         const md = new MarkdownIt();
         for (let i = 0; i < this.blogs.length; i++) {
-          const result = md.render(this.blogs[i].description);
-          this.blogs[i].description = result
+          this.blogs[i].description = md.render(this.blogs[i].description)
         }
+        this.loading = false
       })
     }
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .blog-list {
   height: 100%;
   overflow: auto;
   margin: 0 auto;
-  padding: 0% 2%;
+  padding: 0 2%;
+
+  .skeleton-container {
+    align-items: center;
+    margin: auto;
+    width: 80%;
+
+    .loading-skeleton {
+      margin-top: 10px;
+      padding-top: 10px;
+      padding-bottom: 7px;
+    }
+  }
+
 }
 
 .block {

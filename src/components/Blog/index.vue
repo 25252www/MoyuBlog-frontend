@@ -1,10 +1,19 @@
 <template>
   <div class="blog">
-    <p class="blog-title">{{ blog.title }}</p>
-    <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date.substr(0, 10) }} 🔍{{ blog.hits }}</p>
-    <div class="markdown-body">
-      <v-md-editor class="markdown-body" :model-value="blog.content" mode="preview"></v-md-editor>
-    </div>
+    <el-skeleton :loading="loading" animated>
+      <template #template>
+        <div class="skeleton-container">
+          <el-skeleton class="loading-skeleton" :rows="20" animated/>
+        </div>
+      </template>
+      <template #default>
+        <p class="blog-title">{{ blog.title }}</p>
+        <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date.substr(0, 10) }} 🔍{{ blog.hits }}</p>
+        <div class="markdown-body">
+          <v-md-editor class="markdown-body" :model-value="blog.content" mode="preview"></v-md-editor>
+        </div>
+      </template>
+    </el-skeleton>
   </div>
 </template>
 
@@ -21,6 +30,7 @@ export default {
   },
   data() {
     return {
+      loading: true,
       blog: {},
     }
   },
@@ -31,13 +41,24 @@ export default {
     getBlogById(id) {
       getBlogById(id).then(res => {
         this.blog = res.data.data
+        this.loading = false
       })
     },
   }
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
+.skeleton-container {
+  align-items: center;
+  margin: auto;
+  padding: 0 2%;
+
+  .loading-skeleton {
+    padding-top: 20px;
+  }
+}
 
 .markdown-body {
   box-sizing: border-box;
