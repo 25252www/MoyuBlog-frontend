@@ -24,6 +24,9 @@
     <div class="sub-reply-info">
       <span class="sub-reply-time">{{ model.createTime.slice(0, 16) }}</span>
       <span class="sub-reply-btn" @click="$emit('setReplyTo', model)">回复</span>
+      <div v-if="this.roles.includes('admin') || this.model.userId === this.userId" class="sub-reply-operation-warp">
+        <ReplyOperation :reply-id="model.id"/>
+      </div>
     </div>
   </div>
 
@@ -31,16 +34,20 @@
 
 <script>
 import {mapGetters} from "vuex";
+import ReplyOperation from "./ReplyOperation";
 
 
 export default {
   name: "SubReplyItem",
+  components: {ReplyOperation},
   props: {
     model: Object
   },
   computed: {
     ...mapGetters([
       'token',
+      'roles',
+      'userId'
     ])
   },
   emits: ['setReplyTo']
@@ -110,6 +117,12 @@ export default {
       &:hover {
         color: #0078E7;
       }
+    }
+
+    .sub-reply-operation-warp {
+      position: absolute;
+      right: 20px;
+      height: 100%;
     }
   }
 }

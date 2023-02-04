@@ -36,17 +36,3 @@ export function deleteBlogById(id) {
     })
 }
 
-export function getRepliesByBlogId(id) {
-    return request({
-        url: '/comment/' + id,
-        method: 'get'
-    })
-}
-
-export function sendReply(data) {
-    return request({
-        url: '/comment/add',
-        method: 'post',
-        data
-    })
-}

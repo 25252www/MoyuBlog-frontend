@@ -43,7 +43,7 @@
 
 <script>
 import {mapGetters} from "vuex";
-import {sendReply} from "../../../api/blog";
+import {sendReply} from "../../../api/reply";
 import {ElNotification} from "element-plus";
 
 export default {
@@ -99,9 +99,9 @@ export default {
           content: this.input,
         }
       }
-      sendReply(reply).then(res => {
+      sendReply(reply).then(() => {
         ElNotification({
-          message: res.data.msg,
+          message: "评论成功",
           type: 'info'
         })
         // 评论成功后，调用BlogDetail.vue中的方法刷新评论列表

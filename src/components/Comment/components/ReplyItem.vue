@@ -18,6 +18,9 @@
           <div class="reply-info">
             <span class="reply-time">{{ model.createTime.slice(0, 16) }}</span>
             <span class="reply-btn" @click="toggleReplyBox">回复</span>
+            <div v-if="this.roles.includes('admin') || this.model.userId === this.userId" class="reply-operation-warp">
+              <ReplyOperation :reply-id="model.id"/>
+            </div>
           </div>
         </div>
       </div>
@@ -38,16 +41,19 @@
 import SubReplyItem from "./SubReplyItem";
 import ReplyBox from "./ReplyBox";
 import {mapGetters} from "vuex";
+import ReplyOperation from "./ReplyOperation";
 
 export default {
   name: "ReplyItem",
-  components: {ReplyBox, SubReplyItem},
+  components: {ReplyOperation, ReplyBox, SubReplyItem},
   props: {
     model: Object,
   },
   computed: {
     ...mapGetters([
       'token',
+      'roles',
+      'userId'
     ])
   },
   data() {
@@ -58,7 +64,7 @@ export default {
   },
   methods: {
     setReplyTo(reply) {
-      if(!this.token) {
+      if (!this.token) {
         this.$router.push('/login')
         return
       }
@@ -68,7 +74,7 @@ export default {
       this.replyTo = reply
     },
     toggleReplyBox() {
-      if(!this.token) {
+      if (!this.token) {
         this.$router.push('/login')
         return
       }
@@ -149,6 +155,12 @@ export default {
             &:hover {
               color: #0078E7;
             }
+          }
+
+          .reply-operation-warp {
+            position: absolute;
+            right: 20px;
+            height: 100%;
           }
         }
       }

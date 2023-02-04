@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import {getRepliesByBlogId} from "../../api/blog";
+import {getRepliesByBlogId} from "../../api/reply";
 import ReplyBox from "./components/ReplyBox";
 import ReplyItem from "./components/ReplyItem";
 
@@ -51,7 +51,25 @@ export default {
   methods: {
     getRepliesByBlogId(id) {
       getRepliesByBlogId(id).then(res => {
-        this.replies = res.data.data.replies
+        // 遍历res.data.data.replies，保留一级评论和二级评论中deleted === 0的评论
+        let replies = []
+        for (let i = 0; i < res.data.data.replies.length; i++) {
+          let reply = res.data.data.replies[i]
+          if (reply.deleted === 0){
+            if (reply.children) {
+              let children = []
+              for (let j = 0; j < reply.children.length; j++) {
+                let child = reply.children[j]
+                if (child.deleted === 0) {
+                  children.push(child)
+                }
+              }
+              reply.children = children
+            }
+            replies.push(reply)
+          }
+        }
+        this.replies = replies
       })
     }
   },
@@ -67,11 +85,11 @@ export default {
   font-weight: 400;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
 }
 
 .reply-navigation{
   margin-bottom: 22px;
-  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
   display: flex;
   align-items: center;
 
