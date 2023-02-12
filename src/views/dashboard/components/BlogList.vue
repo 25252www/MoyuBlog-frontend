@@ -15,7 +15,7 @@
               {{ blog.title }}
             </router-link>
           </p>
-          <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date }} 🔍{{ blog.hits }}</p>
+          <p class="blog-createTime-hits" v-if="blog.createTime">📅{{ blog.createTime }} 🔍{{ blog.hits }}</p>
           <div class="markdown-body" v-html="blog.description"/>
         </div>
         <el-pagination id="blog-list-pagination"
@@ -57,15 +57,7 @@ export default {
         this.current = res.data.data.current
         this.total = res.data.data.total
         this.size = res.data.data.size
-        this.blogs = []
-        // 根据id删除不想展示的博客 54-关于我 55-关于站点
-        for (let i = 0; i < res.data.data.records.length; i++) {
-          if (res.data.data.records[i].id === 54 || res.data.data.records[i].id === 55) {
-            this.size--
-            continue
-          }
-          this.blogs.push(res.data.data.records[i])
-        }
+        this.blogs = res.data.data.records
         const MarkdownIt = require("markdown-it");
         const md = new MarkdownIt();
         for (let i = 0; i < this.blogs.length; i++) {
@@ -123,7 +115,7 @@ export default {
   color: #CC0000;
 }
 
-.blog-date-hits {
+.blog-createTime-hits {
   text-align: center;
   font-size: 14px;
   color: #555555;

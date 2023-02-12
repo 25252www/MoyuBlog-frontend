@@ -49,6 +49,16 @@ export const constantRoutes = [
                 component: () => import('../views/about-site')
             }
         ]
+    },
+    {
+        path: '/userSpace',
+        component: Layout,
+        children: [
+            {
+                path: '',
+                component: () => import('../views/userSpace')
+            }
+        ]
     }
 ]
 

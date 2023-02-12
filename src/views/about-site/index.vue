@@ -6,7 +6,7 @@
       </el-col>
       <el-col :span="16" :xs="{span: 20, offset: 2}">
         <div class="blog-container">
-          <Blog :blogId="55"/>
+          <Blog :blogId="2"/>
         </div>
       </el-col>
     </el-row>

@@ -8,7 +8,7 @@
       </template>
       <template #default>
         <p class="blog-title">{{ blog.title }}</p>
-        <p class="blog-date-hits" v-if="blog.date">📅{{ blog.date.substr(0, 10) }} 🔍{{ blog.hits }}</p>
+        <p class="blog-createTime-hits" v-if="blog.createTime">📅{{ blog.createTime }} 🔍{{ blog.hits }}</p>
         <div class="markdown-body">
           <v-md-editor class="markdown-body" :model-value="blog.content" mode="preview"></v-md-editor>
         </div>
@@ -75,7 +75,7 @@ export default {
   font-family: 'Songti SC', 'Noto Serif SC', STZhongsong, STKaiti, KaiTi, Roboto, serif;
 }
 
-.blog-date-hits {
+.blog-createTime-hits {
   text-align: center;
   font-size: 14px;
   color: #555555;

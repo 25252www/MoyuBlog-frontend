@@ -6,9 +6,9 @@
       </el-col>
       <el-col :span="16" :xs="{span: 20, offset: 2}">
         <div class="blog-container">
-          <Blog :blogId="54"/>
+          <Blog :blogId="1"/>
           <el-divider/>
-          <Comment :blogId="54"/>
+          <Comment :blogId="1"/>
         </div>
       </el-col>
     </el-row>

@@ -26,7 +26,7 @@
           >
           </el-table-column>
           <el-table-column
-              prop="date"
+              prop="createTime"
               label="发布时间"
           >
           </el-table-column>
