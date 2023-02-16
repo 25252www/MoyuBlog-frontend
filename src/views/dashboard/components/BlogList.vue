@@ -4,7 +4,7 @@
       <template #template>
         <div class="block" v-for="index of 7" :key="index">
           <div class="skeleton-container">
-          <el-skeleton class="loading-skeleton" :rows="4" animated/>
+            <el-skeleton class="loading-skeleton" :rows="4" animated/>
           </div>
         </div>
       </template>
@@ -15,7 +15,9 @@
               {{ blog.title }}
             </router-link>
           </p>
-          <p class="blog-createTime-hits" v-if="blog.createTime">📅{{ blog.createTime }} 🔍{{ blog.hits }}</p>
+          <p class="blog-createTime-hits" v-if="blog.createTime">📅{{ blog.createTime.substring(0, 10) }} 🔍{{
+              blog.hits
+            }}</p>
           <div class="markdown-body" v-html="blog.description"/>
         </div>
         <el-pagination id="blog-list-pagination"

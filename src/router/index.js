@@ -27,6 +27,16 @@ export const constantRoutes = [
         ]
     },
     {
+      path: '/search',
+        component: Layout,
+        children: [
+            {
+                path: ':keyword',
+                component: () => import('../views/search')
+            }
+        ]
+    },
+    {
         path: '/blogs',
         component: Layout,
         children: [

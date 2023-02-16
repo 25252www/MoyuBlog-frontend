@@ -31,7 +31,7 @@ export function getBlogList() {
 
 export function deleteBlogById(id) {
     return request({
-        url: '/blogs/delete/' + id,
+        url: '/blogs/' + id,
         method: 'delete'
     })
 }
