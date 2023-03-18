@@ -3,7 +3,7 @@
     <el-col class="sidebar-container hidden-xs-only" :span="6">
       <Sidebar/>
     </el-col>
-    <el-col :span="16" :xs="{span: 20, offset: 2}">
+      <el-col :span:="20" :offset="2" :sm="{span: 16}">
       <BlogList/>
     </el-col>
   </el-row>
