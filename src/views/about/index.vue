@@ -4,7 +4,7 @@
       <el-col class="sidebar-container" :span="6">
         <Sidebar/>
       </el-col>
-      <el-col :span="16" :xs="{span: 20, offset: 2}">
+      <el-col :span="16" :xs="{span: 24}">
         <div class="blog-container">
           <Blog :blogId="1"/>
           <el-divider/>

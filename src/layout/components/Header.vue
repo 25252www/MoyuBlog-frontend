@@ -6,7 +6,7 @@
           <img style="height: 30px" src="https://cdn.moyusoldier.cn/logo.svg"/>
         </router-link>
         <el-dropdown trigger="click" size="large">
-        <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar"/>
+          <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar"/>
           <template #dropdown>
             <router-link to="/about">
               <el-dropdown-item>摸鱼战士</el-dropdown-item>
@@ -37,7 +37,7 @@
         </el-input>
       </el-col>
       <el-col :span="4" :offset="3">
-        <router-link v-if="!token" to="/login">
+        <router-link v-if="!token" to="/login" class="login-register-link">
           登录/注册
         </router-link>
         <el-dropdown trigger="click" size="large">
@@ -121,6 +121,13 @@ export default {
   > .el-row {
     margin: 10px 0 5px 0;
     text-align: center;
+    width: 100%;
+
+    > .el-col {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
   }
 
   > .el-divider {
@@ -151,6 +158,7 @@ a {
   height: 100%;
   cursor: pointer;
   transition: background .3s;
+
   &:hover {
     background: rgba(0, 0, 0, .025)
   }
@@ -167,5 +175,10 @@ a {
     display: none;
   }
 }
+
+.login-register-link {
+  display: block;
+}
+
 
 </style>
