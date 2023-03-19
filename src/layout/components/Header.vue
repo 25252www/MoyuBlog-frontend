@@ -2,9 +2,20 @@
   <div id="header-container">
     <el-row justify="center" align="middle">
       <el-col :span="6">
-        <router-link id="logo-link" to="/">
+        <router-link class="logo-link" to="/">
           <img style="height: 30px" src="https://cdn.moyusoldier.cn/logo.svg"/>
         </router-link>
+        <el-dropdown trigger="click" size="large">
+        <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar"/>
+          <template #dropdown>
+            <router-link to="/about">
+              <el-dropdown-item>摸鱼战士</el-dropdown-item>
+            </router-link>
+            <router-link to="/about/site">
+              <el-dropdown-item>摸鱼战士的小站</el-dropdown-item>
+            </router-link>
+          </template>
+        </el-dropdown>
       </el-col>
       <el-col :span="6" :offset="3">
         <el-input
@@ -61,14 +72,17 @@
 <script>
 import {mapGetters} from "vuex";
 import {Search} from "@element-plus/icons";
+import Hamburger from "@/components/Hamburger";
 
 export default {
   name: "Header",
   components: {
+    Hamburger,
     Search
   },
   computed: {
     ...mapGetters([
+      'sidebar',
       'token',
       'avatar',
       'roles',
@@ -80,6 +94,10 @@ export default {
     }
   },
   methods: {
+    toggleSideBar() {
+      // todo: 后续对sidebar的折叠进行优化
+      this.$store.dispatch('app/toggleSideBar')
+    },
     async logout() {
       console.log("logout in Header.vue");
       await this.$store.dispatch('user/logout')
@@ -129,6 +147,25 @@ a {
   height: 35px;
 }
 
+.hamburger-container {
+  height: 100%;
+  cursor: pointer;
+  transition: background .3s;
+  &:hover {
+    background: rgba(0, 0, 0, .025)
+  }
+}
 
+@media only screen and (max-width: 768px) {
+  .logo-link {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 769px) {
+  .hamburger-container {
+    display: none;
+  }
+}
 
 </style>
