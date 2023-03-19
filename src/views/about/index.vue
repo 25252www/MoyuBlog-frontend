@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <el-row>
-      <el-col class="sidebar-container hidden-xs-only" :span="6">
+      <el-col class="sidebar-container" :span="6">
         <Sidebar/>
       </el-col>
       <el-col :span="16" :xs="{span: 20, offset: 2}">
@@ -34,4 +34,9 @@ export default {
   padding: 0 2%;
 }
 
+@media only screen and (max-width: 768px) {
+  .sidebar-container {
+    display: none;
+  }
+}
 </style>

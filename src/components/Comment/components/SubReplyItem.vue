@@ -22,7 +22,8 @@
       </span>
     </span>
     <div class="sub-reply-info">
-      <span class="sub-reply-time">{{ model.createTime.slice(0, 16) }}</span>
+      <span class="sub-reply-time">{{ getShowTime(model.createTime) }}</span>
+      <span v-if="model.ipPossession !== null" class="sub-reply-ip-possession">{{ "IP属地：" + model.ipPossession }}</span>
       <span class="sub-reply-btn" @click="$emit('setReplyTo', model)">回复</span>
       <div v-if="this.roles.includes('admin') || this.model.userId === this.userId" class="sub-reply-operation-warp">
         <ReplyOperation :reply-id="model.id"/>
@@ -50,7 +51,29 @@ export default {
       'userId'
     ])
   },
-  emits: ['setReplyTo']
+  emits: ['setReplyTo'],
+  methods: {
+    getShowTime(recordTime) {
+      const now = new Date()
+      const record = new Date(recordTime)
+      const diff = now.getTime() - record.getTime()
+      const diffDay = diff / (1000 * 60 * 60 * 24)
+      const diffHour = diff / (1000 * 60 * 60)
+      const diffMinute = diff / (1000 * 60)
+      if (diffDay < 1) {
+        if (diffHour < 1) {
+          if (diffMinute < 1) {
+            return '刚刚'
+          } else {
+            return `${Math.floor(diffMinute)}分钟前`
+          }
+        } else {
+          return `${Math.floor(diffHour)}小时前`
+        }
+      }
+      return recordTime.slice(0, 16)
+    }
+  }
 }
 </script>
 
@@ -108,7 +131,11 @@ export default {
     color: #9499A0;
 
     .sub-reply-time {
-      margin-right: 20px;
+      margin-right: 10px;
+    }
+
+    .sub-reply-ip-possession {
+      margin-right: 10px;
     }
 
     .sub-reply-btn {

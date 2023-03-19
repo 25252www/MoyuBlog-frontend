@@ -1,9 +1,10 @@
 <template>
   <el-row>
-    <el-col class="sidebar-container hidden-xs-only" :span="6">
+    <!--width<768时隐藏，平时为6 -->
+    <el-col class="sidebar-container" :span="6">
       <Sidebar/>
     </el-col>
-      <el-col :span:="20" :offset="2" :sm="{span: 16}">
+    <el-col :span="16" :xs="{span: 20, offset: 2}">
       <BlogList/>
     </el-col>
   </el-row>
@@ -20,6 +21,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
+@media only screen and (max-width: 768px) {
+  .sidebar-container {
+    display: none;
+  }
+}
 </style>

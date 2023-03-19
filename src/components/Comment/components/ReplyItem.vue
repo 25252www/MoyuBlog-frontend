@@ -16,7 +16,8 @@
           <span class="reply-content">{{ model.content }}</span>
         </span>
           <div class="reply-info">
-            <span class="reply-time">{{ model.createTime.slice(0, 16) }}</span>
+            <span class="reply-time">{{ getShowTime(model.createTime) }}</span>
+            <span v-if="model.ipPossession !== null" class="reply-ip-possession">{{ "IP属地：" + model.ipPossession }}</span>
             <span class="reply-btn" @click="toggleReplyBox">回复</span>
             <div v-if="this.roles.includes('admin') || this.model.userId === this.userId" class="reply-operation-warp">
               <ReplyOperation :reply-id="model.id"/>
@@ -80,6 +81,26 @@ export default {
       }
       this.showReplyBox = !this.showReplyBox
       this.replyTo = this.model
+    },
+    getShowTime(recordTime) {
+      const now = new Date()
+      const record = new Date(recordTime)
+      const diff = now.getTime() - record.getTime()
+      const diffDay = diff / (1000 * 60 * 60 * 24)
+      const diffHour = diff / (1000 * 60 * 60)
+      const diffMinute = diff / (1000 * 60)
+      if (diffDay < 1) {
+        if (diffHour < 1) {
+          if (diffMinute < 1) {
+            return '刚刚'
+          } else {
+            return `${Math.floor(diffMinute)}分钟前`
+          }
+        } else {
+          return `${Math.floor(diffHour)}小时前`
+        }
+      }
+      return recordTime.slice(0, 16)
     }
   },
 }
@@ -146,7 +167,11 @@ export default {
           color: #9499A0;
 
           .reply-time {
-            margin-right: 20px;
+            margin-right: 10px;
+          }
+
+          .reply-ip-possession{
+            margin-right: 10px;
           }
 
           .reply-btn {
